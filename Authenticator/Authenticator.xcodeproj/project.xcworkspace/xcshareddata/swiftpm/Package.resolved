@@ -1,6 +1,15 @@
 {
-  "originHash" : "4735d86e6c748e516713a138c7010ba28edc8d878412bc93e9661777f0e79eec",
+  "originHash" : "bec26e7ed1e97a285b262464d82cd75469234b23e6ebaaf9fd3bfcaf98e4a26d",
   "pins" : [
+    {
+      "identity" : "pow",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EmergeTools/Pow",
+      "state" : {
+        "revision" : "f0d0f3e72d42beaf2b01f1cb798e1b55902814eb",
+        "version" : "1.0.4"
+      }
+    },
     {
       "identity" : "snapkit",
       "kind" : "remoteSourceControl",

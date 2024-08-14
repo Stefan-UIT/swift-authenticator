@@ -48,11 +48,166 @@ struct HomeView: View {
                             .ignoresSafeArea()
                         mainView
                     }
+                    .navigationTitle("Authenticator")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                    if editMode == .active {
+                                            Button(action: {
+                                                    editMode = .inactive
+                                                    selectedTokens.removeAll()
+                                                    indexSetOnDelete.removeAll()
+                                            }) {
+                                                    Text("Done")
+                                            }
+                                    } else {
+                                            Menu {
+                                                    Button(action: {
+                                                            selectedTokens.removeAll()
+                                                            indexSetOnDelete.removeAll()
+                                                            editMode = .active
+                                                    }) {
+                                                            Label("Edit", systemImage: "list.bullet")
+                                                    }
+                                                    Button(action: {
+                                                            presentingSheet = .moreExport
+                                                            isSheetPresented = true
+                                                    }) {
+                                                            Label("Export", systemImage: "square.and.arrow.up")
+                                                    }
+                                                    Button(action: {
+                                                            presentingSheet = .moreAbout
+                                                            isSheetPresented = true
+                                                    }) {
+                                                            Label("About", systemImage: "info.circle")
+                                                    }
+                                            } label: {
+                                                    Image(systemName: "ellipsis.circle")
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .frame(width: 26)
+                                                            .padding(.trailing, 8)
+                                                            .contentShape(Rectangle())
+                                            }
+                                    }
+                            }
+                            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                                    if editMode == .active {
+                                            Button(role: .destructive) {
+                                                    if !(selectedTokens.isEmpty) {
+                                                            isDeletionAlertPresented = true
+                                                    }
+                                            } label: {
+                                                    Image(systemName: "trash")
+                                            }
+                                    } else {
+                                            Button(action: {
+                                                    presentingSheet = .addByScanning
+                                                    isSheetPresented = true
+                                            }) {
+                                                    Image(systemName: "qrcode.viewfinder")
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .frame(width: 24)
+                                                            .padding(.horizontal, 2)
+                                                            .contentShape(Rectangle())
+                                            }
+                                            Menu {
+                                                    Button(action: {
+                                                            presentingSheet = .addByScanning
+                                                            isSheetPresented = true
+                                                    }) {
+                                                            Label("Scan QR Code", systemImage: "qrcode.viewfinder")
+                                                    }
+                                                    Button(action: {
+                                                            presentingSheet = .addByQRCodeImage
+                                                            isSheetPresented = true
+                                                    }) {
+                                                            Label("Import from Photos", systemImage: "photo")
+                                                    }
+                                                    Button {
+                                                            isFileImporterPresented = true
+                                                    } label: {
+                                                            Label("Import from Files", systemImage: "doc.badge.plus")
+                                                    }
+                                                    Button(action: {
+                                                            presentingSheet = .addByManually
+                                                            isSheetPresented = true
+                                                    }) {
+                                                            Label("Enter Manually", systemImage: "text.cursor")
+                                                    }
+                                            } label: {
+                                                    Image(systemName: "plus")
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .frame(width: 25)
+                                                            .padding(.leading, 8)
+                                                            .contentShape(Rectangle())
+                                            }
+                                    }
+                            }
+                    }
+                    .sheet(isPresented: $isSheetPresented) {
+                            switch presentingSheet {
+                            case .moreExport:
+                                    ExportView(isPresented: $isSheetPresented, tokens: tokensToExport)
+                            case .moreAbout:
+                                    AboutView(isPresented: $isSheetPresented)
+                            case .addByScanning:
+                                    Scanner(isPresented: $isSheetPresented, codeTypes: [.qr], completion: handleScanning(result:))
+                            case .addByQRCodeImage:
+                                    PhotoPicker(completion: handlePickedImage(uri:))
+                            case .addByManually:
+                                    ManualEntryView(isPresented: $isSheetPresented, completion: addItem(_:))
+                            case .cardDetailView:
+                                    TokenDetailView(isPresented: $isSheetPresented, token: token(of: fetchedTokens[tokenIndex]))
+                            case .cardEditing:
+                                    EditAccountView(isPresented: $isSheetPresented, token: token(of: fetchedTokens[tokenIndex]), tokenIndex: tokenIndex) { index, issuer, account in
+                                            handleAccountEditing(index: index, issuer: issuer, account: account)
+                                    }
+                            }
+                    }
                 }
                 .navigationViewStyle(.stack)
         }
     
+    @ViewBuilder
     var mainView: some View {
+        if fetchedTokens.isEmpty {
+            emptyView
+        } else {
+            listView
+        }
+    }
+    
+    var emptyView: some View {
+        VStack {
+            // home-empty
+            Image("home-empty")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 250.minScaled, height: 250.minScaled)
+                .padding(.leading, 40.minScaled)
+            
+            // title
+            Text("Get Started")
+                .font(.system(size: 24, weight: .bold))
+                .fontWeight(.bold)
+                .foregroundColor(.blackHeader)
+                .padding(.vertical, 4)
+            // description
+            Text("Add an extra layer of security to your accounts by enabling two-factor authentication.")
+                .font(.system(size: 16, weight: .regular))
+                .foregroundColor(.gray149)
+                .multilineTextAlignment(.center)
+                .frame(width: 300)
+            Spacer()
+            
+        }
+        .padding(.top, 60.minScaled)
+    }
+    
+    var listView: some View {
         List(selection: $selectedTokens) {
                 ForEach(0..<fetchedTokens.count, id: \.self) { index in
                         let item = fetchedTokens[index]
@@ -90,6 +245,7 @@ struct HomeView: View {
 //                                .onMove(perform: move(from:to:))
                 .onDelete(perform: deleteItems)
         }
+        .scrollContentBackground(.hidden)
         .searchable(text: query)
         .animation(.default, value: animationTrigger)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
@@ -118,125 +274,6 @@ struct HomeView: View {
         }
         .alert(isPresented: $isDeletionAlertPresented) {
                 deletionAlert
-        }
-        .navigationTitle("Authenticator")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                        if editMode == .active {
-                                Button(action: {
-                                        editMode = .inactive
-                                        selectedTokens.removeAll()
-                                        indexSetOnDelete.removeAll()
-                                }) {
-                                        Text("Done")
-                                }
-                        } else {
-                                Menu {
-                                        Button(action: {
-                                                selectedTokens.removeAll()
-                                                indexSetOnDelete.removeAll()
-                                                editMode = .active
-                                        }) {
-                                                Label("Edit", systemImage: "list.bullet")
-                                        }
-                                        Button(action: {
-                                                presentingSheet = .moreExport
-                                                isSheetPresented = true
-                                        }) {
-                                                Label("Export", systemImage: "square.and.arrow.up")
-                                        }
-                                        Button(action: {
-                                                presentingSheet = .moreAbout
-                                                isSheetPresented = true
-                                        }) {
-                                                Label("About", systemImage: "info.circle")
-                                        }
-                                } label: {
-                                        Image(systemName: "ellipsis.circle")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 26)
-                                                .padding(.trailing, 8)
-                                                .contentShape(Rectangle())
-                                }
-                        }
-                }
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                        if editMode == .active {
-                                Button(role: .destructive) {
-                                        if !(selectedTokens.isEmpty) {
-                                                isDeletionAlertPresented = true
-                                        }
-                                } label: {
-                                        Image(systemName: "trash")
-                                }
-                        } else {
-                                Button(action: {
-                                        presentingSheet = .addByScanning
-                                        isSheetPresented = true
-                                }) {
-                                        Image(systemName: "qrcode.viewfinder")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 24)
-                                                .padding(.horizontal, 2)
-                                                .contentShape(Rectangle())
-                                }
-                                Menu {
-                                        Button(action: {
-                                                presentingSheet = .addByScanning
-                                                isSheetPresented = true
-                                        }) {
-                                                Label("Scan QR Code", systemImage: "qrcode.viewfinder")
-                                        }
-                                        Button(action: {
-                                                presentingSheet = .addByQRCodeImage
-                                                isSheetPresented = true
-                                        }) {
-                                                Label("Import from Photos", systemImage: "photo")
-                                        }
-                                        Button {
-                                                isFileImporterPresented = true
-                                        } label: {
-                                                Label("Import from Files", systemImage: "doc.badge.plus")
-                                        }
-                                        Button(action: {
-                                                presentingSheet = .addByManually
-                                                isSheetPresented = true
-                                        }) {
-                                                Label("Enter Manually", systemImage: "text.cursor")
-                                        }
-                                } label: {
-                                        Image(systemName: "plus")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 25)
-                                                .padding(.leading, 8)
-                                                .contentShape(Rectangle())
-                                }
-                        }
-                }
-        }
-        .sheet(isPresented: $isSheetPresented) {
-                switch presentingSheet {
-                case .moreExport:
-                        ExportView(isPresented: $isSheetPresented, tokens: tokensToExport)
-                case .moreAbout:
-                        AboutView(isPresented: $isSheetPresented)
-                case .addByScanning:
-                        Scanner(isPresented: $isSheetPresented, codeTypes: [.qr], completion: handleScanning(result:))
-                case .addByQRCodeImage:
-                        PhotoPicker(completion: handlePickedImage(uri:))
-                case .addByManually:
-                        ManualEntryView(isPresented: $isSheetPresented, completion: addItem(_:))
-                case .cardDetailView:
-                        TokenDetailView(isPresented: $isSheetPresented, token: token(of: fetchedTokens[tokenIndex]))
-                case .cardEditing:
-                        EditAccountView(isPresented: $isSheetPresented, token: token(of: fetchedTokens[tokenIndex]), tokenIndex: tokenIndex) { index, issuer, account in
-                                handleAccountEditing(index: index, issuer: issuer, account: account)
-                        }
-                }
         }
         .environment(\.editMode, $editMode)
     }

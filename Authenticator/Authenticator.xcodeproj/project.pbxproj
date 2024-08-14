@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E233CA02C6CA3D700BD5F77 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 2E233C9F2C6CA3D700BD5F77 /* Pow */; };
+		2E233CA22C6CAA4F00BD5F77 /* Number+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E233CA12C6CAA4F00BD5F77 /* Number+Scale.swift */; };
 		2EE5657F2C6C533500A3B69B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE5657E2C6C533500A3B69B /* AppDelegate.swift */; };
 		2EE565812C6C533500A3B69B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565802C6C533500A3B69B /* SceneDelegate.swift */; };
 		2EE565832C6C533500A3B69B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565822C6C533500A3B69B /* ViewController.swift */; };
@@ -46,6 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E233CA12C6CAA4F00BD5F77 /* Number+Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+Scale.swift"; sourceTree = "<group>"; };
 		2EE5657B2C6C533500A3B69B /* Authenticator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Authenticator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EE5657E2C6C533500A3B69B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EE565802C6C533500A3B69B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E233CA02C6CA3D700BD5F77 /* Pow in Frameworks */,
 				2EE565DA2C6C5A7F00A3B69B /* SnapKit in Frameworks */,
 				2EE565E22C6C8B2100A3B69B /* UIOnboarding in Frameworks */,
 				2EE565A42C6C564000A3B69B /* TabBarModule in Frameworks */,
@@ -137,6 +141,7 @@
 				2EE565BA2C6C57C600A3B69B /* DateExtensions.swift */,
 				2EE565BB2C6C57C600A3B69B /* StringExtensions.swift */,
 				2EE565BC2C6C57C600A3B69B /* URLExtensions.swift */,
+				2E233CA12C6CAA4F00BD5F77 /* Number+Scale.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 				2EE565A32C6C564000A3B69B /* TabBarModule */,
 				2EE565D92C6C5A7F00A3B69B /* SnapKit */,
 				2EE565E12C6C8B2100A3B69B /* UIOnboarding */,
+				2E233C9F2C6CA3D700BD5F77 /* Pow */,
 			);
 			productName = Authenticator;
 			productReference = 2EE5657B2C6C533500A3B69B /* Authenticator.app */;
@@ -296,6 +302,7 @@
 				2EE565A22C6C564000A3B69B /* XCRemoteSwiftPackageReference "swiftui-tab-bar" */,
 				2EE565D82C6C5A7F00A3B69B /* XCRemoteSwiftPackageReference "SnapKit" */,
 				2EE565E02C6C8B2100A3B69B /* XCRemoteSwiftPackageReference "UIOnboarding" */,
+				2E233C9E2C6CA3D700BD5F77 /* XCRemoteSwiftPackageReference "Pow" */,
 			);
 			productRefGroup = 2EE5657C2C6C533500A3B69B /* Products */;
 			projectDirPath = "";
@@ -327,6 +334,7 @@
 				2EE565D02C6C57C600A3B69B /* StringExtensions.swift in Sources */,
 				2EE565CF2C6C57C600A3B69B /* DateExtensions.swift in Sources */,
 				2EE565D12C6C57C600A3B69B /* URLExtensions.swift in Sources */,
+				2E233CA22C6CAA4F00BD5F77 /* Number+Scale.swift in Sources */,
 				2EE565CD2C6C57C600A3B69B /* TabBarSettings.swift in Sources */,
 				2EE5659E2C6C548B00A3B69B /* MainViewCoordinator.swift in Sources */,
 				2EE565CB2C6C57C600A3B69B /* ScannerView.swift in Sources */,
@@ -504,7 +512,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -537,7 +545,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -579,6 +587,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2E233C9E2C6CA3D700BD5F77 /* XCRemoteSwiftPackageReference "Pow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EmergeTools/Pow";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.4;
+			};
+		};
 		2EE5659F2C6C562900A3B69B /* XCRemoteSwiftPackageReference "SwiftOTP" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lachlanbell/SwiftOTP";
@@ -614,6 +630,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2E233C9F2C6CA3D700BD5F77 /* Pow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2E233C9E2C6CA3D700BD5F77 /* XCRemoteSwiftPackageReference "Pow" */;
+			productName = Pow;
+		};
 		2EE565A02C6C562900A3B69B /* SwiftOTP */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2EE5659F2C6C562900A3B69B /* XCRemoteSwiftPackageReference "SwiftOTP" */;
