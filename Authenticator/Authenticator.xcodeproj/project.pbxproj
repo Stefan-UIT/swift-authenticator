@@ -20,7 +20,6 @@
 		2EE5659E2C6C548B00A3B69B /* MainViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565982C6C548B00A3B69B /* MainViewCoordinator.swift */; };
 		2EE565A12C6C562900A3B69B /* SwiftOTP in Frameworks */ = {isa = PBXBuildFile; productRef = 2EE565A02C6C562900A3B69B /* SwiftOTP */; };
 		2EE565A42C6C564000A3B69B /* TabBarModule in Frameworks */ = {isa = PBXBuildFile; productRef = 2EE565A32C6C564000A3B69B /* TabBarModule */; };
-		2EE565A72C6C57AF00A3B69B /* Authenticator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565A52C6C57AF00A3B69B /* Authenticator.xcdatamodeld */; };
 		2EE565C22C6C57C600A3B69B /* OTPGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565A82C6C57C600A3B69B /* OTPGenerator.swift */; };
 		2EE565C32C6C57C600A3B69B /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565A92C6C57C600A3B69B /* Token.swift */; };
 		2EE565C42C6C57C600A3B69B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565AB2C6C57C600A3B69B /* AboutView.swift */; };
@@ -60,7 +59,6 @@
 		2EE565962C6C548B00A3B69B /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		2EE565972C6C548B00A3B69B /* CoordinatorProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocols.swift; sourceTree = "<group>"; };
 		2EE565982C6C548B00A3B69B /* MainViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewCoordinator.swift; sourceTree = "<group>"; };
-		2EE565A62C6C57AF00A3B69B /* Authenticator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Authenticator.xcdatamodel; sourceTree = "<group>"; };
 		2EE565A82C6C57C600A3B69B /* OTPGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPGenerator.swift; sourceTree = "<group>"; };
 		2EE565A92C6C57C600A3B69B /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		2EE565AB2C6C57C600A3B69B /* AboutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
@@ -120,7 +118,6 @@
 		2EE5657D2C6C533500A3B69B /* Authenticator */ = {
 			isa = PBXGroup;
 			children = (
-				2EE565A52C6C57AF00A3B69B /* Authenticator.xcdatamodeld */,
 				2EE565992C6C548B00A3B69B /* Coordinators */,
 				2EE565932C6C548B00A3B69B /* Extensions */,
 				2EE565952C6C548B00A3B69B /* Functions */,
@@ -354,7 +351,6 @@
 				2EE5659A2C6C548B00A3B69B /* UIWindow+Extensions.swift in Sources */,
 				2EE565C22C6C57C600A3B69B /* OTPGenerator.swift in Sources */,
 				2EE565D42C6C57C600A3B69B /* TokenDetailView.swift in Sources */,
-				2EE565A72C6C57AF00A3B69B /* Authenticator.xcdatamodeld in Sources */,
 				2EE565C32C6C57C600A3B69B /* Token.swift in Sources */,
 				2EE565D32C6C57C600A3B69B /* EditAccountView.swift in Sources */,
 				2EE5657F2C6C533500A3B69B /* AppDelegate.swift in Sources */,
@@ -656,20 +652,6 @@
 			productName = UIOnboarding;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		2EE565A52C6C57AF00A3B69B /* Authenticator.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				2EE565A62C6C57AF00A3B69B /* Authenticator.xcdatamodel */,
-			);
-			currentVersion = 2EE565A62C6C57AF00A3B69B /* Authenticator.xcdatamodel */;
-			name = Authenticator.xcdatamodeld;
-			path = "/Users/trungvo/swift-authenticator/Authenticator/Authenticator/Authenticator.xcdatamodeld";
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 2EE565732C6C533500A3B69B /* Project object */;
 }
