@@ -40,6 +40,9 @@
 		2EE565D42C6C57C600A3B69B /* TokenDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565C02C6C57C600A3B69B /* TokenDetailView.swift */; };
 		2EE565D72C6C584200A3B69B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565D62C6C584200A3B69B /* HomeView.swift */; };
 		2EE565DA2C6C5A7F00A3B69B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2EE565D92C6C5A7F00A3B69B /* SnapKit */; };
+		2EE565DE2C6C8B0500A3B69B /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565DB2C6C8B0500A3B69B /* OnboardingView.swift */; };
+		2EE565DF2C6C8B0500A3B69B /* UIOnboardingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565DC2C6C8B0500A3B69B /* UIOnboardingHelper.swift */; };
+		2EE565E22C6C8B2100A3B69B /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 2EE565E12C6C8B2100A3B69B /* UIOnboarding */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +78,8 @@
 		2EE565BF2C6C57C600A3B69B /* EditAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAccountView.swift; sourceTree = "<group>"; };
 		2EE565C02C6C57C600A3B69B /* TokenDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenDetailView.swift; sourceTree = "<group>"; };
 		2EE565D62C6C584200A3B69B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		2EE565DB2C6C8B0500A3B69B /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		2EE565DC2C6C8B0500A3B69B /* UIOnboardingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOnboardingHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +88,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EE565DA2C6C5A7F00A3B69B /* SnapKit in Frameworks */,
+				2EE565E22C6C8B2100A3B69B /* UIOnboarding in Frameworks */,
 				2EE565A42C6C564000A3B69B /* TabBarModule in Frameworks */,
 				2EE565A12C6C562900A3B69B /* SwiftOTP in Frameworks */,
 			);
@@ -138,6 +144,7 @@
 		2EE565952C6C548B00A3B69B /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				2EE565DD2C6C8B0500A3B69B /* Onboarding */,
 				2EE565D52C6C583200A3B69B /* Home */,
 				2EE565B52C6C57C600A3B69B /* Adding */,
 				2EE565AD2C6C57C600A3B69B /* More */,
@@ -225,6 +232,15 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		2EE565DD2C6C8B0500A3B69B /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				2EE565DB2C6C8B0500A3B69B /* OnboardingView.swift */,
+				2EE565DC2C6C8B0500A3B69B /* UIOnboardingHelper.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -245,6 +261,7 @@
 				2EE565A02C6C562900A3B69B /* SwiftOTP */,
 				2EE565A32C6C564000A3B69B /* TabBarModule */,
 				2EE565D92C6C5A7F00A3B69B /* SnapKit */,
+				2EE565E12C6C8B2100A3B69B /* UIOnboarding */,
 			);
 			productName = Authenticator;
 			productReference = 2EE5657B2C6C533500A3B69B /* Authenticator.app */;
@@ -278,6 +295,7 @@
 				2EE5659F2C6C562900A3B69B /* XCRemoteSwiftPackageReference "SwiftOTP" */,
 				2EE565A22C6C564000A3B69B /* XCRemoteSwiftPackageReference "swiftui-tab-bar" */,
 				2EE565D82C6C5A7F00A3B69B /* XCRemoteSwiftPackageReference "SnapKit" */,
+				2EE565E02C6C8B2100A3B69B /* XCRemoteSwiftPackageReference "UIOnboarding" */,
 			);
 			productRefGroup = 2EE5657C2C6C533500A3B69B /* Products */;
 			projectDirPath = "";
@@ -305,6 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EE565DE2C6C8B0500A3B69B /* OnboardingView.swift in Sources */,
 				2EE565D02C6C57C600A3B69B /* StringExtensions.swift in Sources */,
 				2EE565CF2C6C57C600A3B69B /* DateExtensions.swift in Sources */,
 				2EE565D12C6C57C600A3B69B /* URLExtensions.swift in Sources */,
@@ -316,6 +335,7 @@
 				2EE565C82C6C57C600A3B69B /* View+copiedBanner.swift in Sources */,
 				2EE5659D2C6C548B00A3B69B /* CoordinatorProtocols.swift in Sources */,
 				2EE5659C2C6C548B00A3B69B /* AppCoordinator.swift in Sources */,
+				2EE565DF2C6C8B0500A3B69B /* UIOnboardingHelper.swift in Sources */,
 				2EE565832C6C533500A3B69B /* ViewController.swift in Sources */,
 				2EE565D72C6C584200A3B69B /* HomeView.swift in Sources */,
 				2EE565CC2C6C57C600A3B69B /* TabBarItemE.swift in Sources */,
@@ -583,6 +603,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		2EE565E02C6C8B2100A3B69B /* XCRemoteSwiftPackageReference "UIOnboarding" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lascic/UIOnboarding.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -600,6 +628,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2EE565D82C6C5A7F00A3B69B /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		2EE565E12C6C8B2100A3B69B /* UIOnboarding */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2EE565E02C6C8B2100A3B69B /* XCRemoteSwiftPackageReference "UIOnboarding" */;
+			productName = UIOnboarding;
 		};
 /* End XCSwiftPackageProductDependency section */
 

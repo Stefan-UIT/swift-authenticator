@@ -42,197 +42,204 @@ struct HomeView: View {
         
         var body: some View {
                 NavigationView {
-                        List(selection: $selectedTokens) {
-                                ForEach(0..<fetchedTokens.count, id: \.self) { index in
-                                        let item = fetchedTokens[index]
-                                        Section {
-                                                CodeCardView(token: token(of: item), totp: $codes[index], timeRemaining: $timeRemaining)
-                                                        .contextMenu {
-                                                                Button(action: {
-                                                                        UIPasteboard.general.string = codes[index]
-                                                                }) {
-                                                                        Label("Copy Code", systemImage: "doc.on.doc")
-                                                                }
-                                                                Button(action: {
-                                                                        tokenIndex = index
-                                                                        presentingSheet = .cardDetailView
-                                                                        isSheetPresented = true
-                                                                }) {
-                                                                        Label("View Detail", systemImage: "text.justifyleft")
-                                                                }
-                                                                Button(action: {
-                                                                        tokenIndex = index
-                                                                        presentingSheet = .cardEditing
-                                                                        isSheetPresented = true
-                                                                }) {
-                                                                        Label("Edit Account", systemImage: "square.and.pencil")
-                                                                }
-                                                                Button(role: .destructive) {
-                                                                        tokenIndex = index
-                                                                        selectedTokens.removeAll()
-                                                                        indexSetOnDelete.removeAll()
-                                                                        isDeletionAlertPresented = true
-                                                                } label: {
-                                                                        Label("Delete", systemImage: "trash")
-                                                                }
-                                                        }
-                                        }
-                                }
-//                                .onMove(perform: move(from:to:))
-                                .onDelete(perform: deleteItems)
-                        }
-                        .searchable(text: query)
-                        .animation(.default, value: animationTrigger)
-                        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
-                                generateCodes()
-                                clearTemporaryDirectory()
-                        }
-                        .onReceive(timer) { _ in
-                                timeRemaining = 30 - (Int(Date().timeIntervalSince1970) % 30)
-                                if timeRemaining == 30 || codes.first == String.zeros {
-                                        generateCodes()
-                                }
-                        }
-                        .fileImporter(isPresented: $isFileImporterPresented, allowedContentTypes: [.text, .image], allowsMultipleSelection: false) { result in
-                                switch result {
-                                case .failure(let error):
-                                        print(".fileImporter() failure: \(error.localizedDescription)")
-                                case .success(let urls):
-                                        guard let pickedUrl: URL = urls.first else { return }
-                                        guard pickedUrl.startAccessingSecurityScopedResource() else { return }
-                                        let cachePathComponent = Date.currentDateText + pickedUrl.lastPathComponent
-                                        let cacheUrl: URL = .tmpDirectoryUrl.appendingPathComponent(cachePathComponent)
-                                        try? FileManager.default.copyItem(at: pickedUrl, to: cacheUrl)
-                                        pickedUrl.stopAccessingSecurityScopedResource()
-                                        handlePickedFile(url: cacheUrl)
-                                }
-                        }
-                        .alert(isPresented: $isDeletionAlertPresented) {
-                                deletionAlert
-                        }
-                        .navigationTitle("Authenticator")
-                        .navigationBarTitleDisplayMode(.inline)
-                        .toolbar {
-                                ToolbarItem(placement: .navigationBarLeading) {
-                                        if editMode == .active {
-                                                Button(action: {
-                                                        editMode = .inactive
-                                                        selectedTokens.removeAll()
-                                                        indexSetOnDelete.removeAll()
-                                                }) {
-                                                        Text("Done")
-                                                }
-                                        } else {
-                                                Menu {
-                                                        Button(action: {
-                                                                selectedTokens.removeAll()
-                                                                indexSetOnDelete.removeAll()
-                                                                editMode = .active
-                                                        }) {
-                                                                Label("Edit", systemImage: "list.bullet")
-                                                        }
-                                                        Button(action: {
-                                                                presentingSheet = .moreExport
-                                                                isSheetPresented = true
-                                                        }) {
-                                                                Label("Export", systemImage: "square.and.arrow.up")
-                                                        }
-                                                        Button(action: {
-                                                                presentingSheet = .moreAbout
-                                                                isSheetPresented = true
-                                                        }) {
-                                                                Label("About", systemImage: "info.circle")
-                                                        }
-                                                } label: {
-                                                        Image(systemName: "ellipsis.circle")
-                                                                .resizable()
-                                                                .scaledToFit()
-                                                                .frame(width: 26)
-                                                                .padding(.trailing, 8)
-                                                                .contentShape(Rectangle())
-                                                }
-                                        }
-                                }
-                                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                                        if editMode == .active {
-                                                Button(role: .destructive) {
-                                                        if !(selectedTokens.isEmpty) {
-                                                                isDeletionAlertPresented = true
-                                                        }
-                                                } label: {
-                                                        Image(systemName: "trash")
-                                                }
-                                        } else {
-                                                Button(action: {
-                                                        presentingSheet = .addByScanning
-                                                        isSheetPresented = true
-                                                }) {
-                                                        Image(systemName: "qrcode.viewfinder")
-                                                                .resizable()
-                                                                .scaledToFit()
-                                                                .frame(width: 24)
-                                                                .padding(.horizontal, 2)
-                                                                .contentShape(Rectangle())
-                                                }
-                                                Menu {
-                                                        Button(action: {
-                                                                presentingSheet = .addByScanning
-                                                                isSheetPresented = true
-                                                        }) {
-                                                                Label("Scan QR Code", systemImage: "qrcode.viewfinder")
-                                                        }
-                                                        Button(action: {
-                                                                presentingSheet = .addByQRCodeImage
-                                                                isSheetPresented = true
-                                                        }) {
-                                                                Label("Import from Photos", systemImage: "photo")
-                                                        }
-                                                        Button {
-                                                                isFileImporterPresented = true
-                                                        } label: {
-                                                                Label("Import from Files", systemImage: "doc.badge.plus")
-                                                        }
-                                                        Button(action: {
-                                                                presentingSheet = .addByManually
-                                                                isSheetPresented = true
-                                                        }) {
-                                                                Label("Enter Manually", systemImage: "text.cursor")
-                                                        }
-                                                } label: {
-                                                        Image(systemName: "plus")
-                                                                .resizable()
-                                                                .scaledToFit()
-                                                                .frame(width: 25)
-                                                                .padding(.leading, 8)
-                                                                .contentShape(Rectangle())
-                                                }
-                                        }
-                                }
-                        }
-                        .sheet(isPresented: $isSheetPresented) {
-                                switch presentingSheet {
-                                case .moreExport:
-                                        ExportView(isPresented: $isSheetPresented, tokens: tokensToExport)
-                                case .moreAbout:
-                                        AboutView(isPresented: $isSheetPresented)
-                                case .addByScanning:
-                                        Scanner(isPresented: $isSheetPresented, codeTypes: [.qr], completion: handleScanning(result:))
-                                case .addByQRCodeImage:
-                                        PhotoPicker(completion: handlePickedImage(uri:))
-                                case .addByManually:
-                                        ManualEntryView(isPresented: $isSheetPresented, completion: addItem(_:))
-                                case .cardDetailView:
-                                        TokenDetailView(isPresented: $isSheetPresented, token: token(of: fetchedTokens[tokenIndex]))
-                                case .cardEditing:
-                                        EditAccountView(isPresented: $isSheetPresented, token: token(of: fetchedTokens[tokenIndex]), tokenIndex: tokenIndex) { index, issuer, account in
-                                                handleAccountEditing(index: index, issuer: issuer, account: account)
-                                        }
-                                }
-                        }
-                        .environment(\.editMode, $editMode)
+                    ZStack {
+                        Image("home-background")
+                            .resizable()
+                            .ignoresSafeArea()
+                        mainView
+                    }
                 }
                 .navigationViewStyle(.stack)
         }
+    
+    var mainView: some View {
+        List(selection: $selectedTokens) {
+                ForEach(0..<fetchedTokens.count, id: \.self) { index in
+                        let item = fetchedTokens[index]
+                                CodeCardView(token: token(of: item), totp: $codes[index], timeRemaining: $timeRemaining)
+                                        .contextMenu {
+                                                Button(action: {
+                                                        UIPasteboard.general.string = codes[index]
+                                                }) {
+                                                        Label("Copy Code", systemImage: "doc.on.doc")
+                                                }
+                                                Button(action: {
+                                                        tokenIndex = index
+                                                        presentingSheet = .cardDetailView
+                                                        isSheetPresented = true
+                                                }) {
+                                                        Label("View Detail", systemImage: "text.justifyleft")
+                                                }
+                                                Button(action: {
+                                                        tokenIndex = index
+                                                        presentingSheet = .cardEditing
+                                                        isSheetPresented = true
+                                                }) {
+                                                        Label("Edit Account", systemImage: "square.and.pencil")
+                                                }
+                                                Button(role: .destructive) {
+                                                        tokenIndex = index
+                                                        selectedTokens.removeAll()
+                                                        indexSetOnDelete.removeAll()
+                                                        isDeletionAlertPresented = true
+                                                } label: {
+                                                        Label("Delete", systemImage: "trash")
+                                                }
+                                        }
+                }
+//                                .onMove(perform: move(from:to:))
+                .onDelete(perform: deleteItems)
+        }
+        .searchable(text: query)
+        .animation(.default, value: animationTrigger)
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                generateCodes()
+                clearTemporaryDirectory()
+        }
+        .onReceive(timer) { _ in
+                timeRemaining = 30 - (Int(Date().timeIntervalSince1970) % 30)
+                if timeRemaining == 30 || codes.first == String.zeros {
+                        generateCodes()
+                }
+        }
+        .fileImporter(isPresented: $isFileImporterPresented, allowedContentTypes: [.text, .image], allowsMultipleSelection: false) { result in
+                switch result {
+                case .failure(let error):
+                        print(".fileImporter() failure: \(error.localizedDescription)")
+                case .success(let urls):
+                        guard let pickedUrl: URL = urls.first else { return }
+                        guard pickedUrl.startAccessingSecurityScopedResource() else { return }
+                        let cachePathComponent = Date.currentDateText + pickedUrl.lastPathComponent
+                        let cacheUrl: URL = .tmpDirectoryUrl.appendingPathComponent(cachePathComponent)
+                        try? FileManager.default.copyItem(at: pickedUrl, to: cacheUrl)
+                        pickedUrl.stopAccessingSecurityScopedResource()
+                        handlePickedFile(url: cacheUrl)
+                }
+        }
+        .alert(isPresented: $isDeletionAlertPresented) {
+                deletionAlert
+        }
+        .navigationTitle("Authenticator")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                        if editMode == .active {
+                                Button(action: {
+                                        editMode = .inactive
+                                        selectedTokens.removeAll()
+                                        indexSetOnDelete.removeAll()
+                                }) {
+                                        Text("Done")
+                                }
+                        } else {
+                                Menu {
+                                        Button(action: {
+                                                selectedTokens.removeAll()
+                                                indexSetOnDelete.removeAll()
+                                                editMode = .active
+                                        }) {
+                                                Label("Edit", systemImage: "list.bullet")
+                                        }
+                                        Button(action: {
+                                                presentingSheet = .moreExport
+                                                isSheetPresented = true
+                                        }) {
+                                                Label("Export", systemImage: "square.and.arrow.up")
+                                        }
+                                        Button(action: {
+                                                presentingSheet = .moreAbout
+                                                isSheetPresented = true
+                                        }) {
+                                                Label("About", systemImage: "info.circle")
+                                        }
+                                } label: {
+                                        Image(systemName: "ellipsis.circle")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 26)
+                                                .padding(.trailing, 8)
+                                                .contentShape(Rectangle())
+                                }
+                        }
+                }
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        if editMode == .active {
+                                Button(role: .destructive) {
+                                        if !(selectedTokens.isEmpty) {
+                                                isDeletionAlertPresented = true
+                                        }
+                                } label: {
+                                        Image(systemName: "trash")
+                                }
+                        } else {
+                                Button(action: {
+                                        presentingSheet = .addByScanning
+                                        isSheetPresented = true
+                                }) {
+                                        Image(systemName: "qrcode.viewfinder")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 24)
+                                                .padding(.horizontal, 2)
+                                                .contentShape(Rectangle())
+                                }
+                                Menu {
+                                        Button(action: {
+                                                presentingSheet = .addByScanning
+                                                isSheetPresented = true
+                                        }) {
+                                                Label("Scan QR Code", systemImage: "qrcode.viewfinder")
+                                        }
+                                        Button(action: {
+                                                presentingSheet = .addByQRCodeImage
+                                                isSheetPresented = true
+                                        }) {
+                                                Label("Import from Photos", systemImage: "photo")
+                                        }
+                                        Button {
+                                                isFileImporterPresented = true
+                                        } label: {
+                                                Label("Import from Files", systemImage: "doc.badge.plus")
+                                        }
+                                        Button(action: {
+                                                presentingSheet = .addByManually
+                                                isSheetPresented = true
+                                        }) {
+                                                Label("Enter Manually", systemImage: "text.cursor")
+                                        }
+                                } label: {
+                                        Image(systemName: "plus")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 25)
+                                                .padding(.leading, 8)
+                                                .contentShape(Rectangle())
+                                }
+                        }
+                }
+        }
+        .sheet(isPresented: $isSheetPresented) {
+                switch presentingSheet {
+                case .moreExport:
+                        ExportView(isPresented: $isSheetPresented, tokens: tokensToExport)
+                case .moreAbout:
+                        AboutView(isPresented: $isSheetPresented)
+                case .addByScanning:
+                        Scanner(isPresented: $isSheetPresented, codeTypes: [.qr], completion: handleScanning(result:))
+                case .addByQRCodeImage:
+                        PhotoPicker(completion: handlePickedImage(uri:))
+                case .addByManually:
+                        ManualEntryView(isPresented: $isSheetPresented, completion: addItem(_:))
+                case .cardDetailView:
+                        TokenDetailView(isPresented: $isSheetPresented, token: token(of: fetchedTokens[tokenIndex]))
+                case .cardEditing:
+                        EditAccountView(isPresented: $isSheetPresented, token: token(of: fetchedTokens[tokenIndex]), tokenIndex: tokenIndex) { index, issuer, account in
+                                handleAccountEditing(index: index, issuer: issuer, account: account)
+                        }
+                }
+        }
+        .environment(\.editMode, $editMode)
+    }
         
         
         // MARK: - Modification

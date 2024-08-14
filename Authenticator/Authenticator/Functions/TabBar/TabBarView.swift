@@ -10,8 +10,9 @@ import TabBarModule
 
 struct TabBarView: View {
         @StateObject private var tabBarSetting = TabBarSettings()
-        
-        
+    //    @AppStorage("showOnboarding") var showOnboarding: Bool = true
+        @State var showOnboarding: Bool = false
+    
     var body: some View {
             TabBar(selection: $tabBarSetting.selectedItem, visibility: $tabBarSetting.visibility) {
                     homeView
@@ -23,10 +24,10 @@ struct TabBarView: View {
             .tabBarPadding(.horizontal, 16)
             .tabBarShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .tabBarShadow(radius: 1, y: 1)
-//            .fullScreenCover(isPresented: $showOnboarding, content: {
-//                OnboardingView()
-//                    .edgesIgnoringSafeArea(.all)
-//            })
+            .fullScreenCover(isPresented: $showOnboarding, content: {
+                OnboardingView()
+                    .edgesIgnoringSafeArea(.all)
+            })
     }
 }
 
