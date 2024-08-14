@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2E233CA02C6CA3D700BD5F77 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 2E233C9F2C6CA3D700BD5F77 /* Pow */; };
 		2E233CA22C6CAA4F00BD5F77 /* Number+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E233CA12C6CAA4F00BD5F77 /* Number+Scale.swift */; };
+		2E233CA52C6CEE5900BD5F77 /* Authenticator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2E233CA32C6CEE5900BD5F77 /* Authenticator.xcdatamodeld */; };
 		2EE5657F2C6C533500A3B69B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE5657E2C6C533500A3B69B /* AppDelegate.swift */; };
 		2EE565812C6C533500A3B69B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565802C6C533500A3B69B /* SceneDelegate.swift */; };
 		2EE565832C6C533500A3B69B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565822C6C533500A3B69B /* ViewController.swift */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		2E233CA12C6CAA4F00BD5F77 /* Number+Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+Scale.swift"; sourceTree = "<group>"; };
+		2E233CA42C6CEE5900BD5F77 /* Authenticator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Authenticator.xcdatamodel; sourceTree = "<group>"; };
 		2EE5657B2C6C533500A3B69B /* Authenticator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Authenticator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EE5657E2C6C533500A3B69B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EE565802C6C533500A3B69B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		2EE5657D2C6C533500A3B69B /* Authenticator */ = {
 			isa = PBXGroup;
 			children = (
+				2E233CA32C6CEE5900BD5F77 /* Authenticator.xcdatamodeld */,
 				2EE565992C6C548B00A3B69B /* Coordinators */,
 				2EE565932C6C548B00A3B69B /* Extensions */,
 				2EE565952C6C548B00A3B69B /* Functions */,
@@ -355,6 +358,7 @@
 				2EE565D32C6C57C600A3B69B /* EditAccountView.swift in Sources */,
 				2EE5657F2C6C533500A3B69B /* AppDelegate.swift in Sources */,
 				2EE565C92C6C57C600A3B69B /* ManualEntryView.swift in Sources */,
+				2E233CA52C6CEE5900BD5F77 /* Authenticator.xcdatamodeld in Sources */,
 				2EE565C62C6C57C600A3B69B /* ActivityView.swift in Sources */,
 				2EE565812C6C533500A3B69B /* SceneDelegate.swift in Sources */,
 			);
@@ -652,6 +656,20 @@
 			productName = UIOnboarding;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		2E233CA32C6CEE5900BD5F77 /* Authenticator.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2E233CA42C6CEE5900BD5F77 /* Authenticator.xcdatamodel */,
+			);
+			currentVersion = 2E233CA42C6CEE5900BD5F77 /* Authenticator.xcdatamodel */;
+			name = Authenticator.xcdatamodeld;
+			path = "/Users/trungvo/swift-authenticator/Authenticator/Authenticator/Authenticator.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2EE565732C6C533500A3B69B /* Project object */;
 }
