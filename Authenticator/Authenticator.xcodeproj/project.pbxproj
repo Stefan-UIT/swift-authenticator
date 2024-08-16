@@ -17,6 +17,8 @@
 		2E233CB42C6DA6C800BD5F77 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E233CB12C6DA6C800BD5F77 /* View+Extensions.swift */; };
 		2E233CB52C6DA6C800BD5F77 /* Binding+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E233CB22C6DA6C800BD5F77 /* Binding+Extensions.swift */; };
 		2E233CB62C6DA6C800BD5F77 /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E233CB32C6DA6C800BD5F77 /* TypeAlias.swift */; };
+		2E35B6B32C6F3C2D00F3F5C0 /* AlertKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2E35B6B22C6F3C2D00F3F5C0 /* AlertKit */; };
+		2E35B6B62C6F3CAE00F3F5C0 /* AlertKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E35B6B52C6F3CAE00F3F5C0 /* AlertKitHelper.swift */; };
 		2EE5657F2C6C533500A3B69B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE5657E2C6C533500A3B69B /* AppDelegate.swift */; };
 		2EE565812C6C533500A3B69B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565802C6C533500A3B69B /* SceneDelegate.swift */; };
 		2EE565832C6C533500A3B69B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565822C6C533500A3B69B /* ViewController.swift */; };
@@ -63,6 +65,7 @@
 		2E233CB12C6DA6C800BD5F77 /* View+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		2E233CB22C6DA6C800BD5F77 /* Binding+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Binding+Extensions.swift"; sourceTree = "<group>"; };
 		2E233CB32C6DA6C800BD5F77 /* TypeAlias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
+		2E35B6B52C6F3CAE00F3F5C0 /* AlertKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertKitHelper.swift; sourceTree = "<group>"; };
 		2EE5657B2C6C533500A3B69B /* Authenticator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Authenticator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EE5657E2C6C533500A3B69B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EE565802C6C533500A3B69B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +108,7 @@
 			files = (
 				2E233CB02C6DA65400BD5F77 /* FloatingButton in Frameworks */,
 				2E233CA02C6CA3D700BD5F77 /* Pow in Frameworks */,
+				2E35B6B32C6F3C2D00F3F5C0 /* AlertKit in Frameworks */,
 				2EE565DA2C6C5A7F00A3B69B /* SnapKit in Frameworks */,
 				2EE565E22C6C8B2100A3B69B /* UIOnboarding in Frameworks */,
 				2EE565A42C6C564000A3B69B /* TabBarModule in Frameworks */,
@@ -133,6 +137,14 @@
 			path = FloatingButton;
 			sourceTree = "<group>";
 		};
+		2E35B6B42C6F3C9900F3F5C0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2E35B6B52C6F3CAE00F3F5C0 /* AlertKitHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		2EE565722C6C533500A3B69B = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				2E233CA32C6CEE5900BD5F77 /* Authenticator.xcdatamodeld */,
+				2E35B6B42C6F3C9900F3F5C0 /* Helpers */,
 				2EE565992C6C548B00A3B69B /* Coordinators */,
 				2EE565932C6C548B00A3B69B /* Extensions */,
 				2EE565952C6C548B00A3B69B /* Functions */,
@@ -305,6 +318,7 @@
 				2EE565E12C6C8B2100A3B69B /* UIOnboarding */,
 				2E233C9F2C6CA3D700BD5F77 /* Pow */,
 				2E233CAF2C6DA65400BD5F77 /* FloatingButton */,
+				2E35B6B22C6F3C2D00F3F5C0 /* AlertKit */,
 			);
 			productName = Authenticator;
 			productReference = 2EE5657B2C6C533500A3B69B /* Authenticator.app */;
@@ -341,6 +355,7 @@
 				2EE565E02C6C8B2100A3B69B /* XCRemoteSwiftPackageReference "UIOnboarding" */,
 				2E233C9E2C6CA3D700BD5F77 /* XCRemoteSwiftPackageReference "Pow" */,
 				2E233CAE2C6DA65400BD5F77 /* XCRemoteSwiftPackageReference "FloatingButton" */,
+				2E35B6B12C6F3C2D00F3F5C0 /* XCRemoteSwiftPackageReference "AlertKit" */,
 			);
 			productRefGroup = 2EE5657C2C6C533500A3B69B /* Products */;
 			projectDirPath = "";
@@ -389,6 +404,7 @@
 				2EE565832C6C533500A3B69B /* ViewController.swift in Sources */,
 				2E233CAD2C6DA5C000BD5F77 /* IconAndTextButton.swift in Sources */,
 				2EE565D72C6C584200A3B69B /* HomeView.swift in Sources */,
+				2E35B6B62C6F3CAE00F3F5C0 /* AlertKitHelper.swift in Sources */,
 				2EE565CC2C6C57C600A3B69B /* TabBarItemE.swift in Sources */,
 				2E233CB52C6DA6C800BD5F77 /* Binding+Extensions.swift in Sources */,
 				2EE565D22C6C57C600A3B69B /* CodeCardView.swift in Sources */,
@@ -647,6 +663,14 @@
 				minimumVersion = 1.3.0;
 			};
 		};
+		2E35B6B12C6F3C2D00F3F5C0 /* XCRemoteSwiftPackageReference "AlertKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparrowcode/AlertKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.9;
+			};
+		};
 		2EE5659F2C6C562900A3B69B /* XCRemoteSwiftPackageReference "SwiftOTP" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lachlanbell/SwiftOTP";
@@ -691,6 +715,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2E233CAE2C6DA65400BD5F77 /* XCRemoteSwiftPackageReference "FloatingButton" */;
 			productName = FloatingButton;
+		};
+		2E35B6B22C6F3C2D00F3F5C0 /* AlertKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2E35B6B12C6F3C2D00F3F5C0 /* XCRemoteSwiftPackageReference "AlertKit" */;
+			productName = AlertKit;
 		};
 		2EE565A02C6C562900A3B69B /* SwiftOTP */ = {
 			isa = XCSwiftPackageProductDependency;

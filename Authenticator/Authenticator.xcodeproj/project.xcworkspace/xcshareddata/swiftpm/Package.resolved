@@ -1,6 +1,15 @@
 {
-  "originHash" : "0e5096de9cd14f14c1a6b238e5949d2d8fadc88ff6f9ccc8d17ad4b79f00dc90",
+  "originHash" : "49a7b566f21b6a8faad3fcdd12a212743ebdfb6cf6eaef0b3ad4e4097dccf384",
   "pins" : [
+    {
+      "identity" : "alertkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sparrowcode/AlertKit.git",
+      "state" : {
+        "revision" : "3b73be8db5a7e7efaf474c6ed919f5a437d843c9",
+        "version" : "5.1.9"
+      }
+    },
     {
       "identity" : "floatingbutton",
       "kind" : "remoteSourceControl",

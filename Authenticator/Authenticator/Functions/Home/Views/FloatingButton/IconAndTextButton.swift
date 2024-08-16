@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct IconAndTextButton: View {
-
     var imageName: String
     var buttonText: String
     let imageWidth: CGFloat = 22

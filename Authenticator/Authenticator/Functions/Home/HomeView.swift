@@ -38,6 +38,8 @@ struct HomeView: View {
                         }
                 }
             }
+    
+    @State private var isPresentedSetting = false
         
         init() {
                 UITableView.appearance().sectionFooterHeight = 0
@@ -54,7 +56,7 @@ struct HomeView: View {
                         floatingButton
                             .padding(.bottom, 80)
                     }
-                    .navigationTitle("Authenticator")
+                    .navigationTitle("Home")
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                             ToolbarItem(placement: .navigationBarLeading) {
@@ -67,6 +69,19 @@ struct HomeView: View {
                                                     Text("Done")
                                             }
                                     } else {
+                                        HStack {
+                                            // setting button with gear icon
+                                            Button {
+                                                isPresentedSetting = true
+                                            } label: {
+                                                Image(systemName: "gear")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 26)
+                                                    .padding(.trailing, 8)
+                                                    .contentShape(Rectangle())
+                                            }
+                                            
                                             Menu {
                                                     Button(action: {
                                                             selectedTokens.removeAll()
@@ -95,6 +110,7 @@ struct HomeView: View {
                                                             .padding(.trailing, 8)
                                                             .contentShape(Rectangle())
                                             }
+                                        }
                                     }
                             }
                             ToolbarItemGroup(placement: .navigationBarTrailing) {
@@ -141,6 +157,9 @@ struct HomeView: View {
                                             }
                                     }
                             }
+                    }
+                    .sheet(isPresented: $isPresentedSetting) {
+                        Text("Setting")
                     }
                     .sheet(isPresented: $isSheetPresented) {
                             switch presentingSheet {
@@ -221,6 +240,13 @@ struct HomeView: View {
     
     var listView: some View {
         List(selection: $selectedTokens) {
+            // title
+            Text("Authenticator")
+                .font(.system(size: 16, weight: .medium))
+                .foregroundColor(.gray)
+                .listRowBackground(Color.clear)
+                .listRowSeparator(.hidden)
+            
                 ForEach(0..<fetchedTokens.count, id: \.self) { index in
                         let item = fetchedTokens[index]
                                 CodeCardView(token: token(of: item), totp: $codes[index], timeRemaining: $timeRemaining)
@@ -256,7 +282,11 @@ struct HomeView: View {
                 }
 //                                .onMove(perform: move(from:to:))
                 .onDelete(perform: deleteItems)
+//                .listRowInsets(EdgeInsets())
+//                .listRowSeparator(.hidden)
+                .listRowBackground(Color.clear)
         }
+        .listStyle(.plain)
         .scrollContentBackground(.hidden)
         .searchable(text: query)
         .animation(.default, value: animationTrigger)
