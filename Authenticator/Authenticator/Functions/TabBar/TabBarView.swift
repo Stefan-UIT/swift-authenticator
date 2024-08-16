@@ -19,8 +19,6 @@ struct TabBarView: View {
                     settingView
             }
             .tabBarFill(.regularMaterial)
-//            .tabBarMargins(.vertical, 8)
-//            .tabBarPadding(.vertical, 8)
             .tabBarPadding(.horizontal, 16)
             .tabBarShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .tabBarShadow(radius: 1, y: 1)

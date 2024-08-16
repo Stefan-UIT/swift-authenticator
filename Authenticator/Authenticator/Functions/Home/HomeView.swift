@@ -4,8 +4,12 @@ import CoreData
 struct HomeView: View {
         @Environment(\.managedObjectContext) private var viewContext
         @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \TokenData.indexNumber, ascending: true)], animation: .default)
+    
         private var fetchedTokens: FetchedResults<TokenData>
         
+        @State private var presentingSheet: HomeActionE = .moreAbout
+        @State private var tokenIndex: Int = 0
+    
         private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
         @State private var timeRemaining: Int = 30 - (Int(Date().timeIntervalSince1970) % 30)
         @State private var codes: [String] = Array(repeating: String.zeros, count: 50)
@@ -42,11 +46,13 @@ struct HomeView: View {
         
         var body: some View {
                 NavigationView {
-                    ZStack {
+                    ZStack(alignment: .bottomTrailing) {
                         Image("home-background")
                             .resizable()
                             .ignoresSafeArea()
                         mainView
+                        floatingButton
+                            .padding(.bottom, 80)
                     }
                     .navigationTitle("Authenticator")
                     .navigationBarTitleDisplayMode(.inline)
@@ -101,17 +107,6 @@ struct HomeView: View {
                                                     Image(systemName: "trash")
                                             }
                                     } else {
-                                            Button(action: {
-                                                    presentingSheet = .addByScanning
-                                                    isSheetPresented = true
-                                            }) {
-                                                    Image(systemName: "qrcode.viewfinder")
-                                                            .resizable()
-                                                            .scaledToFit()
-                                                            .frame(width: 24)
-                                                            .padding(.horizontal, 2)
-                                                            .contentShape(Rectangle())
-                                            }
                                             Menu {
                                                     Button(action: {
                                                             presentingSheet = .addByScanning
@@ -165,6 +160,22 @@ struct HomeView: View {
                                     EditAccountView(isPresented: $isSheetPresented, token: token(of: fetchedTokens[tokenIndex]), tokenIndex: tokenIndex) { index, issuer, account in
                                             handleAccountEditing(index: index, issuer: issuer, account: account)
                                     }
+                            default:
+                                EmptyView()
+                            }
+                    }
+                    .fileImporter(isPresented: $isFileImporterPresented, allowedContentTypes: [.text, .image], allowsMultipleSelection: false) { result in
+                            switch result {
+                            case .failure(let error):
+                                    print(".fileImporter() failure: \(error.localizedDescription)")
+                            case .success(let urls):
+                                    guard let pickedUrl: URL = urls.first else { return }
+                                    guard pickedUrl.startAccessingSecurityScopedResource() else { return }
+                                    let cachePathComponent = Date.currentDateText + pickedUrl.lastPathComponent
+                                    let cacheUrl: URL = .tmpDirectoryUrl.appendingPathComponent(cachePathComponent)
+                                    try? FileManager.default.copyItem(at: pickedUrl, to: cacheUrl)
+                                    pickedUrl.stopAccessingSecurityScopedResource()
+                                    handlePickedFile(url: cacheUrl)
                             }
                     }
                 }
@@ -204,6 +215,7 @@ struct HomeView: View {
             Spacer()
             
         }
+        .frame(width: UIScreen.width)
         .padding(.top, 60.minScaled)
     }
     
@@ -256,20 +268,6 @@ struct HomeView: View {
                 timeRemaining = 30 - (Int(Date().timeIntervalSince1970) % 30)
                 if timeRemaining == 30 || codes.first == String.zeros {
                         generateCodes()
-                }
-        }
-        .fileImporter(isPresented: $isFileImporterPresented, allowedContentTypes: [.text, .image], allowsMultipleSelection: false) { result in
-                switch result {
-                case .failure(let error):
-                        print(".fileImporter() failure: \(error.localizedDescription)")
-                case .success(let urls):
-                        guard let pickedUrl: URL = urls.first else { return }
-                        guard pickedUrl.startAccessingSecurityScopedResource() else { return }
-                        let cachePathComponent = Date.currentDateText + pickedUrl.lastPathComponent
-                        let cacheUrl: URL = .tmpDirectoryUrl.appendingPathComponent(cachePathComponent)
-                        try? FileManager.default.copyItem(at: pickedUrl, to: cacheUrl)
-                        pickedUrl.stopAccessingSecurityScopedResource()
-                        handlePickedFile(url: cacheUrl)
                 }
         }
         .alert(isPresented: $isDeletionAlertPresented) {
@@ -439,14 +437,35 @@ struct HomeView: View {
         }
 }
 
-private var presentingSheet: SheetSet = .moreAbout
-private var tokenIndex: Int = 0
+private extension HomeView {
+    var floatingButton: some View {
+        HomeFloatingButton { selectedOption in
+            switch selectedOption {
+            case .addByScanning:
+                presentingSheet = .addByScanning
+                isSheetPresented = true
+            case .addByQRCodeImage:
+                presentingSheet = .addByQRCodeImage
+                isSheetPresented = true
+            case .addByManually:
+                presentingSheet = .addByManually
+                isSheetPresented = true
+            case .addByFile:
+                isFileImporterPresented = true
+            default:
+                break
+            }
+        }
+    }
+    
+}
 
-private enum SheetSet {
+enum HomeActionE {
         case moreExport
         case moreAbout
         case addByScanning
         case addByQRCodeImage
+    case addByFile
         case addByManually
         case cardDetailView
         case cardEditing

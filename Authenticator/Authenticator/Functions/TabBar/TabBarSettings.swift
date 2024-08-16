@@ -9,6 +9,6 @@ import SwiftUI
 
 class TabBarSettings: ObservableObject {
     @Published var selectedItem: Int = 0
-    @Published var visibility: Visibility = .visible
+    @Published var visibility: Visibility = .hidden
 }
 
