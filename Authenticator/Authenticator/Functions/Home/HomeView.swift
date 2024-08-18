@@ -49,12 +49,14 @@ struct HomeView: View {
         var body: some View {
                 NavigationView {
                     ZStack(alignment: .bottomTrailing) {
-                        Image("home-background")
-                            .resizable()
+//                        Image("home-background")
+//                            .resizable()
+//                            .ignoresSafeArea()
+                        Color.lightGrayBackground
                             .ignoresSafeArea()
                         mainView
                         floatingButton
-                            .padding(.bottom, 80)
+                            .padding(.bottom, 40)
                     }
                     .navigationTitle("Home")
                     .navigationBarTitleDisplayMode(.inline)
@@ -218,13 +220,21 @@ struct HomeView: View {
                 .scaledToFit()
                 .frame(width: 250.minScaled, height: 250.minScaled)
                 .padding(.leading, 40.minScaled)
+                // add drop shadow
+
+                .frame(maxHeight: 258.minScaled, alignment: bouncing ? .bottom : .top)
+                .shadow(color: Color.onboardDarkBlue, radius: 30, x: 0, y: 5)
+                .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true), value: bouncing)
+                .onAppear {
+                    self.bouncing.toggle()
+                }
             
             // title
             Text("Get Started")
                 .font(.system(size: 24, weight: .bold))
                 .fontWeight(.bold)
                 .foregroundColor(.blackHeader)
-                .padding(.vertical, 4)
+                .padding(.bottom, 4)
             // description
             Text("Add an extra layer of security to your accounts by enabling two-factor authentication.")
                 .font(.system(size: 16, weight: .regular))
@@ -237,6 +247,7 @@ struct HomeView: View {
         .frame(width: UIScreen.width)
         .padding(.top, 60.minScaled)
     }
+    @State private var bouncing = false
     
     var listView: some View {
         List(selection: $selectedTokens) {
@@ -469,7 +480,7 @@ struct HomeView: View {
 
 private extension HomeView {
     var floatingButton: some View {
-        HomeFloatingButton { selectedOption in
+        HomeFloatingButton(isJumping: fetchedTokens.isEmpty) { selectedOption in
             switch selectedOption {
             case .addByScanning:
                 presentingSheet = .addByScanning

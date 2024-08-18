@@ -7,10 +7,12 @@
 
 import SwiftUI
 import FloatingButton
+import Pow
 
 struct HomeFloatingButton: View {
+    @State var isJumping: Bool
     @State private var isOpen = false
-    private let mainButton = MainButton(imageName: "plus", color: .mainBlue, width: 60)
+    
     var didSelectOption: Completion<HomeActionE>?
 
     var body: some View {
@@ -25,13 +27,6 @@ struct HomeFloatingButton: View {
                     isOpen.toggle()
                 }
             ,
-            /*
-             Button {
-                     isFileImporterPresented = true
-             } label: {
-                     Label("Import from Files", systemImage: "doc.badge.plus")
-             }
-             */
             IconAndTextButton(imageName: "doc.badge.plus", buttonText: "Import from Files").onTapGesture {
                 didSelectOption?(.addByFile)
                 isOpen.toggle()
@@ -42,7 +37,8 @@ struct HomeFloatingButton: View {
                 isOpen.toggle()
             }
         ]
-        return FloatingButton(mainButtonView: mainButton,
+        
+        return FloatingButton(mainButtonView: MainButton(imageName: "plus", color: .mainBlue, width: 60).conditionalEffect(.repeat(.jump(height: 40), every: .seconds(4)), condition: isJumping),
                        buttons: textButtons,
                        isOpen: $isOpen)
             .straight()
@@ -50,11 +46,15 @@ struct HomeFloatingButton: View {
             .alignment(.right)
             .spacing(12)
             .initialOpacity(0)
-//            .initialOffset(x: 1000)
+            .onChange(of: isOpen) { value in
+                if value {
+                    isJumping = false
+                } 
+//                else {
+//                    isJumping = true
+//                }
+            }
+//            .initialOffset(x: 100x0)
 //            .animation(.spring())
     }
-}
-
-#Preview {
-    HomeFloatingButton()
 }

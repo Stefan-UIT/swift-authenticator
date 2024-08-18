@@ -41,9 +41,9 @@ struct CodeCardView: View {
             .contentShape(Rectangle())
             Spacer()
             ZStack {
-                Circle().stroke(Color.mainBlue.opacity(0.3), lineWidth: 2)
+                Circle().stroke(Color.mainBlue.opacity(0.3), lineWidth: 2.5)
                 Arc(startAngle: .degrees(-90), endAngle: .degrees(endAngle), clockwise: true)
-                    .stroke(lineWidth: 2)
+                    .stroke(lineWidth: 2.5)
                     .foregroundStyle(Color.mainBlue)
                 Text(verbatim: timeRemaining.description)
                     .font(.system(size: 12, weight: .regular).monospacedDigit())

@@ -19,6 +19,7 @@
 		2E233CB62C6DA6C800BD5F77 /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E233CB32C6DA6C800BD5F77 /* TypeAlias.swift */; };
 		2E35B6B32C6F3C2D00F3F5C0 /* AlertKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2E35B6B22C6F3C2D00F3F5C0 /* AlertKit */; };
 		2E35B6B62C6F3CAE00F3F5C0 /* AlertKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E35B6B52C6F3CAE00F3F5C0 /* AlertKitHelper.swift */; };
+		2E35B6BB2C71D31F00F3F5C0 /* HomeEmptyImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E35B6BA2C71D31F00F3F5C0 /* HomeEmptyImage.swift */; };
 		2EE5657F2C6C533500A3B69B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE5657E2C6C533500A3B69B /* AppDelegate.swift */; };
 		2EE565812C6C533500A3B69B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565802C6C533500A3B69B /* SceneDelegate.swift */; };
 		2EE565832C6C533500A3B69B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565822C6C533500A3B69B /* ViewController.swift */; };
@@ -66,6 +67,7 @@
 		2E233CB22C6DA6C800BD5F77 /* Binding+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Binding+Extensions.swift"; sourceTree = "<group>"; };
 		2E233CB32C6DA6C800BD5F77 /* TypeAlias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		2E35B6B52C6F3CAE00F3F5C0 /* AlertKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertKitHelper.swift; sourceTree = "<group>"; };
+		2E35B6BA2C71D31F00F3F5C0 /* HomeEmptyImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyImage.swift; sourceTree = "<group>"; };
 		2EE5657B2C6C533500A3B69B /* Authenticator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Authenticator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EE5657E2C6C533500A3B69B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EE565802C6C533500A3B69B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 		2E233CA62C6DA56A00BD5F77 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2E35B6B72C71D2E700F3F5C0 /* Onboard */,
 				2E233CA72C6DA57100BD5F77 /* FloatingButton */,
 			);
 			path = Views;
@@ -143,6 +146,14 @@
 				2E35B6B52C6F3CAE00F3F5C0 /* AlertKitHelper.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		2E35B6B72C71D2E700F3F5C0 /* Onboard */ = {
+			isa = PBXGroup;
+			children = (
+				2E35B6BA2C71D31F00F3F5C0 /* HomeEmptyImage.swift */,
+			);
+			path = Onboard;
 			sourceTree = "<group>";
 		};
 		2EE565722C6C533500A3B69B = {
@@ -397,6 +408,7 @@
 				2EE565CA2C6C57C600A3B69B /* PhotoPicker.swift in Sources */,
 				2EE565C82C6C57C600A3B69B /* View+copiedBanner.swift in Sources */,
 				2EE5659D2C6C548B00A3B69B /* CoordinatorProtocols.swift in Sources */,
+				2E35B6BB2C71D31F00F3F5C0 /* HomeEmptyImage.swift in Sources */,
 				2E233CAB2C6DA5C000BD5F77 /* HomeFloatingButton.swift in Sources */,
 				2EE5659C2C6C548B00A3B69B /* AppCoordinator.swift in Sources */,
 				2E233CAC2C6DA5C000BD5F77 /* FloatingMainButton.swift in Sources */,
