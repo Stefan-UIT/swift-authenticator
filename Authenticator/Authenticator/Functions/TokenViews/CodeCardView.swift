@@ -33,24 +33,36 @@ struct CodeCardView: View {
                         .font(.headline)
                     Text(verbatim: token.displayAccountName)
                         .font(.footnote)
+                        .foregroundStyle(.textGray)
                 }
                 Text(verbatim: formattedTotp)
                     .font(.system(size: 30, weight: .bold).monospacedDigit())
             }
-            .foregroundStyle(.blackHeader)
+            .foregroundStyle(.textBlack)
             .contentShape(Rectangle())
             Spacer()
             ZStack {
-                Circle().stroke(Color.mainBlue.opacity(0.3), lineWidth: 2.5)
+                Circle().stroke(gradientView.opacity(0.3), lineWidth: 2.5)
                 Arc(startAngle: .degrees(-90), endAngle: .degrees(endAngle), clockwise: true)
                     .stroke(lineWidth: 2.5)
-                    .foregroundStyle(Color.mainBlue)
+                    .foregroundStyle(
+                        gradientView
+                    )
                 Text(verbatim: timeRemaining.description)
                     .font(.system(size: 12, weight: .regular).monospacedDigit())
-                    .foregroundStyle(Color(uiColor: .darkGray))
+                    .foregroundStyle(
+                        Color(uiColor: .textGray)
+                    )
             }
             .frame(width: 32, height: 32)
         }
+    }
+    
+    private var gradientView: LinearGradient {
+        LinearGradient(colors: [
+            Color.mainBlue,
+            Color.mainPurple,
+        ], startPoint: .topLeading, endPoint: .bottomTrailing)
     }
     
     private var formattedTotp: String {

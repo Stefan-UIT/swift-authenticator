@@ -192,7 +192,7 @@ struct HomeView: View {
             Text("Get Started")
                 .font(.system(size: 24, weight: .bold))
                 .fontWeight(.bold)
-                .foregroundColor(.blackHeader)
+                .foregroundColor(.textBlack)
                 .padding(.bottom, 4)
             // description
             Text("Add an extra layer of security to your accounts by enabling two-factor authentication.")
