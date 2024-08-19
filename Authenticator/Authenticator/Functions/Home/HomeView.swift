@@ -1,5 +1,6 @@
 import SwiftUI
 import CoreData
+import Lottie
 
 struct HomeView: View {
         @Environment(\.managedObjectContext) private var viewContext
@@ -49,9 +50,6 @@ struct HomeView: View {
         var body: some View {
                 NavigationView {
                     ZStack(alignment: .bottomTrailing) {
-//                        Image("home-background")
-//                            .resizable()
-//                            .ignoresSafeArea()
                         Color.lightGrayBackground
                             .ignoresSafeArea()
                         mainView
@@ -73,54 +71,20 @@ struct HomeView: View {
                                     } else {
                                         HStack {
                                             // setting button with gear icon
-                                            Button {
-                                                isPresentedSetting = true
-                                            } label: {
-                                                Image(systemName: "gear")
-                                                    .resizable()
-                                                    .scaledToFit()
-                                                    .frame(width: 26)
-                                                    .padding(.trailing, 8)
-                                                    .contentShape(Rectangle())
-                                            }
+                                            settingButton
                                             
-                                            Menu {
-                                                    Button(action: {
-                                                            selectedTokens.removeAll()
-                                                            indexSetOnDelete.removeAll()
-                                                            editMode = .active
-                                                    }) {
-                                                            Label("Edit", systemImage: "list.bullet")
-                                                    }
-                                                    Button(action: {
-                                                            presentingSheet = .moreExport
-                                                            isSheetPresented = true
-                                                    }) {
-                                                            Label("Export", systemImage: "square.and.arrow.up")
-                                                    }
-                                                    Button(action: {
-                                                            presentingSheet = .moreAbout
-                                                            isSheetPresented = true
-                                                    }) {
-                                                            Label("About", systemImage: "info.circle")
-                                                    }
-                                            } label: {
-                                                    Image(systemName: "ellipsis.circle")
-                                                            .resizable()
-                                                            .scaledToFit()
-                                                            .frame(width: 26)
-                                                            .padding(.trailing, 8)
-                                                            .contentShape(Rectangle())
-                                            }
+                                            
+//                                            editMenu
+                                            
                                         }
                                     }
                             }
                             ToolbarItemGroup(placement: .navigationBarTrailing) {
-                             // TODO: add Premium icon
+                                premiumButton
                             }
                     }
                     .sheet(isPresented: $isPresentedSetting) {
-                        Text("Setting")
+                        SettingView()
                     }
                     .sheet(isPresented: $isSheetPresented) {
                             switch presentingSheet {
@@ -161,6 +125,56 @@ struct HomeView: View {
                 }
                 .navigationViewStyle(.stack)
         }
+    private var editMenu: some View {
+        Menu {
+                Button(action: {
+                        selectedTokens.removeAll()
+                        indexSetOnDelete.removeAll()
+                        editMode = .active
+                }) {
+                        Label("Edit", systemImage: "list.bullet")
+                }
+                Button(action: {
+                        presentingSheet = .moreExport
+                        isSheetPresented = true
+                }) {
+                        Label("Export", systemImage: "square.and.arrow.up")
+                }
+                Button(action: {
+                        presentingSheet = .moreAbout
+                        isSheetPresented = true
+                }) {
+                        Label("About", systemImage: "info.circle")
+                }
+        } label: {
+                Image(systemName: "ellipsis.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 26)
+                        .padding(.trailing, 8)
+                        .contentShape(Rectangle())
+        }
+    }
+    
+    private var settingButton: some View {
+        Button {
+            isPresentedSetting = true
+        } label: {
+            Image("setting-icon")
+                .resizable()
+                .frame(width: 32, height: 32)
+        }
+    }
+    
+    private var premiumButton: some View {
+        Button {
+            print("Present sub")
+        } label: {
+            LottieView(animation: .named("king-icon-lottie"))
+              .looping()
+              .frame(width: 32, height: 32)
+        }
+    }
     
     @ViewBuilder
     var mainView: some View {
@@ -193,7 +207,7 @@ struct HomeView: View {
                 .font(.system(size: 24, weight: .bold))
                 .fontWeight(.bold)
                 .foregroundColor(.textBlack)
-                .padding(.bottom, 4)
+                .padding(.vertical, 4)
             // description
             Text("Add an extra layer of security to your accounts by enabling two-factor authentication.")
                 .font(.system(size: 16, weight: .regular))
@@ -212,8 +226,10 @@ struct HomeView: View {
         List(selection: $selectedTokens) {
             // title
             Text("Authenticator")
-                .font(.system(size: 16, weight: .medium))
-                .foregroundColor(.gray)
+                .font(.system(size: 16, weight: .bold))
+                .foregroundStyle(
+                    LinearGradient.mainGradientBlueOnly(startPoint: .leading, endPoint: .trailing)
+                )
                 .listRowBackground(Color.clear)
                 .listRowSeparator(.hidden)
             

@@ -23,13 +23,8 @@ struct MainButton: View {
     var plusButton: some View {
         ZStack {
             // gradient colors
-            LinearGradient(gradient: Gradient(colors: [
-                Color.mainBlue,
-                Color.mainPurple.opacity(0.8)
-            ]),
-                           startPoint: .topLeading,
-                           endPoint: .bottomTrailing)
-            .frame(width: width, height: width)
+            LinearGradient.mainGradientBlueOnly()
+                .frame(width: width, height: width)
                 .cornerRadius(width / 2)
                 .shadow(color: .mainBlue.opacity(0.5),
                         radius: 15,

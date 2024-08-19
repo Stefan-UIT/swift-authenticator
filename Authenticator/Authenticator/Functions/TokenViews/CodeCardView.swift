@@ -59,10 +59,8 @@ struct CodeCardView: View {
     }
     
     private var gradientView: LinearGradient {
-        LinearGradient(colors: [
-            Color.mainBlue,
-            Color.mainPurple,
-        ], startPoint: .topLeading, endPoint: .bottomTrailing)
+        LinearGradient.mainGradientBlueOnly(startPoint: .topTrailing,
+                                            endPoint: .topLeading)
     }
     
     private var formattedTotp: String {
