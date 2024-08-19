@@ -56,7 +56,7 @@ struct HomeView: View {
                             .ignoresSafeArea()
                         mainView
                         floatingButton
-                            .padding(.bottom, 40)
+                            .padding(.bottom, 48)
                     }
                     .navigationTitle("Home")
                     .navigationBarTitleDisplayMode(.inline)
@@ -116,48 +116,7 @@ struct HomeView: View {
                                     }
                             }
                             ToolbarItemGroup(placement: .navigationBarTrailing) {
-                                    if editMode == .active {
-                                            Button(role: .destructive) {
-                                                    if !(selectedTokens.isEmpty) {
-                                                            isDeletionAlertPresented = true
-                                                    }
-                                            } label: {
-                                                    Image(systemName: "trash")
-                                            }
-                                    } else {
-                                            Menu {
-                                                    Button(action: {
-                                                            presentingSheet = .addByScanning
-                                                            isSheetPresented = true
-                                                    }) {
-                                                            Label("Scan QR Code", systemImage: "qrcode.viewfinder")
-                                                    }
-                                                    Button(action: {
-                                                            presentingSheet = .addByQRCodeImage
-                                                            isSheetPresented = true
-                                                    }) {
-                                                            Label("Import from Photos", systemImage: "photo")
-                                                    }
-                                                    Button {
-                                                            isFileImporterPresented = true
-                                                    } label: {
-                                                            Label("Import from Files", systemImage: "doc.badge.plus")
-                                                    }
-                                                    Button(action: {
-                                                            presentingSheet = .addByManually
-                                                            isSheetPresented = true
-                                                    }) {
-                                                            Label("Enter Manually", systemImage: "text.cursor")
-                                                    }
-                                            } label: {
-                                                    Image(systemName: "plus")
-                                                            .resizable()
-                                                            .scaledToFit()
-                                                            .frame(width: 25)
-                                                            .padding(.leading, 8)
-                                                            .contentShape(Rectangle())
-                                            }
-                                    }
+                             // TODO: add Premium icon
                             }
                     }
                     .sheet(isPresented: $isPresentedSetting) {
@@ -205,7 +164,7 @@ struct HomeView: View {
     
     @ViewBuilder
     var mainView: some View {
-        if fetchedTokens.isEmpty {
+        if fetchedTokens.isEmpty && fetchedTokens.nsPredicate == nil {
             emptyView
         } else {
             listView

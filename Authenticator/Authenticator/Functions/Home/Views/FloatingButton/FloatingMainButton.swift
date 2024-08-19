@@ -25,13 +25,13 @@ struct MainButton: View {
             // gradient colors
             LinearGradient(gradient: Gradient(colors: [
                 Color.mainBlue,
-                Color.mainBlue.opacity(0.6)
+                Color.mainPurple.opacity(0.8)
             ]),
-                           startPoint: .top,
-                           endPoint: .bottom)
+                           startPoint: .topLeading,
+                           endPoint: .bottomTrailing)
             .frame(width: width, height: width)
                 .cornerRadius(width / 2)
-                .shadow(color: color.opacity(0.5),
+                .shadow(color: .mainBlue.opacity(0.5),
                         radius: 15,
                         x: 0,
                         y: 15)

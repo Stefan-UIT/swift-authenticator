@@ -32,7 +32,7 @@ struct IconAndTextButton: View {
         }
         .frame(width: 160, height: 45)
         .cornerRadius(8)
-        .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 1)
+        .shadow(color: .black.opacity(0.15), radius: 5, x: 0, y: 1)
         .overlay(
             RoundedRectangle(cornerRadius: 8)
                 .stroke(Color.white, lineWidth: 1)
