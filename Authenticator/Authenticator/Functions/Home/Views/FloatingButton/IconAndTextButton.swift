@@ -10,7 +10,8 @@ import SwiftUI
 struct IconAndTextButton: View {
     var imageName: String
     var buttonText: String
-    let imageWidth: CGFloat = 22
+    var imageWidth: CGFloat = 22
+    var imageHeight: CGFloat = 22
 
     var body: some View {
         ZStack {
@@ -20,7 +21,7 @@ struct IconAndTextButton: View {
                     .resizable()
                     .aspectRatio(1, contentMode: .fill)
                     .foregroundColor(Color.textBlack)
-                    .frame(width: imageWidth, height: imageWidth)
+                    .frame(width: imageWidth, height: imageHeight)
                     .clipped()
                 Spacer()
                 Text(buttonText)
@@ -28,7 +29,7 @@ struct IconAndTextButton: View {
                     .foregroundColor(Color.textBlack)
                 Spacer()
             }
-            .padding(.horizontal, 15)
+            .padding(.horizontal, 14)
         }
         .frame(width: 160, height: 45)
         .cornerRadius(8)

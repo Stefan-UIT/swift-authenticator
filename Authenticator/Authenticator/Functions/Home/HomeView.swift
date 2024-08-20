@@ -60,31 +60,11 @@ struct HomeView: View {
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                             ToolbarItem(placement: .navigationBarLeading) {
-                                    if editMode == .active {
-                                            Button(action: {
-                                                    editMode = .inactive
-                                                    selectedTokens.removeAll()
-                                                    indexSetOnDelete.removeAll()
-                                            }) {
-                                                    Text("Done")
-                                            }
-                                    } else {
-                                        HStack {
-                                            // setting button with gear icon
-                                            settingButton
-                                            
-                                            
-//                                            editMenu
-                                            
-                                        }
-                                    }
+                                settingButton
                             }
                             ToolbarItemGroup(placement: .navigationBarTrailing) {
                                 premiumButton
                             }
-                    }
-                    .sheet(isPresented: $isPresentedSetting) {
-                        SettingView()
                     }
                     .sheet(isPresented: $isSheetPresented) {
                             switch presentingSheet {
@@ -157,9 +137,7 @@ struct HomeView: View {
     }
     
     private var settingButton: some View {
-        Button {
-            isPresentedSetting = true
-        } label: {
+        NavigationLink(destination: SettingView(tokens: tokensToExport)) {
             Image("setting-icon")
                 .resizable()
                 .frame(width: 32, height: 32)
@@ -167,13 +145,7 @@ struct HomeView: View {
     }
     
     private var premiumButton: some View {
-        Button {
-            print("Present sub")
-        } label: {
-            LottieView(animation: .named("king-icon-lottie"))
-              .looping()
-              .frame(width: 32, height: 32)
-        }
+        PremiumLottieView()
     }
     
     @ViewBuilder

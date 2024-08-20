@@ -8,14 +8,28 @@
 import SwiftUI
 
 struct SettingHeaderView: View {
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         HStack {
-            Text("More")
+            Button(action: {
+                dismiss()
+            }) {
+                Image("black-arrow-left-icon")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 24, height: 24)
+                    .foregroundColor(.textBlack)
+                    .padding(.trailing, 4)
+            }
+            
+            Text("Setting")
                 .font(.system(size: 24, weight: .semibold))
                 .foregroundColor(.textBlack)
-                .padding(.leading)
             Spacer()
+            PremiumLottieView()
         }
+        .padding(.horizontal)
         .padding(.bottom, 4)
         .frame(maxWidth: .infinity)
         .frame(height: 50)

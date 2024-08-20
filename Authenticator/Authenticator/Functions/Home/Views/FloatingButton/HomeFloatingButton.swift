@@ -38,7 +38,7 @@ struct HomeFloatingButton: View {
             }
         ]
         
-        return FloatingButton(mainButtonView: MainButton(imageName: "plus", color: .mainBlue, width: 60).conditionalEffect(.repeat(.jump(height: 40), every: .seconds(4)), condition: isJumping),
+        return FloatingButton(mainButtonView: MainButton(imageName: "plus", color: .mainBlue, width: 60).conditionalEffect(.repeat(.jump(height: 40.minScaled), every: .seconds(4)), condition: isJumping),
                        buttons: textButtons,
                        isOpen: $isOpen)
             .straight()
