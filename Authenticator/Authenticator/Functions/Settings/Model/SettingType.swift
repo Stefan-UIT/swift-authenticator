@@ -68,12 +68,7 @@ enum SettingType {
     }
     
     var imageSize: CGSize {
-        switch self {
-        case .exportPlainText, .exportTxtFile:
-            return CGSize(width: 32, height: 32)
-        default:
-            return CGSize(width: 32, height: 32)
-        }
+        return CGSize(width: 32, height: 32)
     }
     
     var url: String? {

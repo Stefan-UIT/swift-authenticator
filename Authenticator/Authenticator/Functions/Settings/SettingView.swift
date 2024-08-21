@@ -18,8 +18,6 @@ struct SettingView: View {
     
     @State private var selectedItem: SettingType?
     @State private var isPresentedView = false
-    @State private var buttonScale = 1.0
-    @State private var isShineEffect = false
     @State private var isFaceIDToggleEnable = false
     @State private var isiCloudToggleEnable = false
     
@@ -50,23 +48,8 @@ struct SettingView: View {
         VStack {
             SettingHeaderView()
             ScrollView() {
-//                if !EntitlementManager.shared.hasPro {
-//                    Button(action: {
-//                        AppCoordinator.share?.presentSubscriptionView()
-//                    }, label: {
-//                        premiumBanner
-//                            .padding(.horizontal)
-//                            .scaleEffect(buttonScale)
-//                    })
-//                    .onAppear {
-//                        withAnimation(.easeInOut(duration: 0.5).repeatForever(autoreverses: true)) {
-//                            buttonScale = 0.98
-//                        }
-//                    }
-//                    
-//                }
-                faceIDToggleView
-                icloudToggleView
+//                faceIDToggleView
+//                icloudToggleView
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(sections) { section in
                         Section(header:
@@ -82,10 +65,7 @@ struct SettingView: View {
                                     VStack {
                                         item.image
                                             .resizable()
-                                            .frame(width: 32, height: 32)
-//                                            .renderingMode(.template)
-//                                            .font(.system(size: 22))
-//                                            .foregroundColor(.textBlack)
+                                            .frame(width: item.imageSize.width, height: item.imageSize.height)
                                             .padding(.bottom, 8)
                                         Text(item.title)
                                             .font(.system(size: 16, weight: .regular))
@@ -102,9 +82,6 @@ struct SettingView: View {
             }
         }
         .onAppear {
-            Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { _ in
-                isShineEffect.toggle()
-            }
             isFaceIDToggleEnable = BiometricAuthenticationService.shared.isAppLocked
         }
         .toolbar(.hidden)

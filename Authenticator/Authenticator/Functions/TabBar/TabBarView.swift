@@ -9,9 +9,8 @@ import SwiftUI
 import TabBarModule
 
 struct TabBarView: View {
-        @StateObject private var tabBarSetting = TabBarSettings()
-    //    @AppStorage("showOnboarding") var showOnboarding: Bool = true
-        @State var showOnboarding: Bool = false
+    @StateObject private var tabBarSetting = TabBarSettings()
+    @AppStorage("showOnboarding") var showOnboarding: Bool = true
     @State var showLockScreen: Bool = false
     
     var body: some View {

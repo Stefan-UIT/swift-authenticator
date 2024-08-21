@@ -10,7 +10,7 @@ struct ManualEntryView: View {
         @Binding var isPresented: Bool
         let completion: (Token) -> Void
 
-        @State private var entryMethod: EntryMethod = .keyURI
+        @State private var entryMethod: EntryMethod = .secretKey
         @State private var keyUri: String = .empty
         @State private var issuer: String = .empty
         @State private var accountName: String = .empty
@@ -21,15 +21,15 @@ struct ManualEntryView: View {
         var body: some View {
                 NavigationView {
                         List {
-                                Section {
-                                        Picker("Method", selection: $entryMethod) {
-                                                Text("By Key URI").tag(EntryMethod.keyURI)
-                                                Text("By Secret Key").tag(EntryMethod.secretKey)
-                                        }
-                                        .pickerStyle(.segmented)
-                                }
-                                .listRowInsets(EdgeInsets())
-                                .listRowBackground(Color.clear)
+//                                Section {
+//                                        Picker("Method", selection: $entryMethod) {
+//                                                Text("By Key URI").tag(EntryMethod.keyURI)
+//                                                Text("By Secret Key").tag(EntryMethod.secretKey)
+//                                        }
+//                                        .pickerStyle(.segmented)
+//                                }
+//                                .listRowInsets(EdgeInsets())
+//                                .listRowBackground(Color.clear)
 
                                 if entryMethod == EntryMethod.keyURI {
                                         Section {
@@ -72,6 +72,15 @@ struct ManualEntryView: View {
                                         } header: {
                                                 Text(verbatim: "Secret Key")
                                         }
+                                    HStack {
+                                        // cancel and add buttons
+                                        cancelButton
+                                        
+                                        addButton
+                                    }
+                                    .listRowInsets(EdgeInsets())
+                                    .listRowBackground(Color.clear)
+                                    .padding(.top, 24)
                                 }
                         }
                         .alert("Error", isPresented: $isAlertPresented) {
@@ -81,20 +90,70 @@ struct ManualEntryView: View {
                         }
                         .navigationTitle("Add Account")
                         .navigationBarTitleDisplayMode(.inline)
-                        .toolbar {
-                                ToolbarItem(placement: .cancellationAction) {
-                                        Button("Cancel") {
-                                                isPresented = false
-                                        }
-                                }
-                                ToolbarItem(placement: .confirmationAction) {
-                                        Button("Add") {
-                                                handleAdding()
-                                        }
-                                }
-                        }
+//                        .toolbar {
+//                                ToolbarItem(placement: .cancellationAction) {
+//                                        Button("Cancel") {
+//                                                isPresented = false
+//                                        }
+//                                }
+//                                ToolbarItem(placement: .confirmationAction) {
+//                                        Button("Add") {
+//                                                handleAdding()
+//                                        }
+//                                }
+//                        }
                 }
         }
+    
+    private var addButton: some View {
+        Button(action: {
+            handleAdding()
+        }, label: {
+            HStack {
+                // plus icon
+                Image(systemName: "plus")
+                    .renderingMode(.template)
+                    .resizable()
+                    .frame(width: 16, height: 16)
+                    .foregroundColor(.white)
+                
+                Text("Add")
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundColor(.white)
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 50)
+            .background(
+                RoundedRectangle(cornerRadius: 25)
+                    .fill(Color.mainBlue)
+            )
+        })
+    }
+    
+    private var cancelButton: some View {
+        Button(action: {
+            isPresented = false
+        }, label: {
+            HStack {
+                // cross icon
+                Image(systemName: "xmark")
+                    .renderingMode(.template)
+                    .resizable()
+                    .frame(width: 16, height: 16)
+                    .foregroundColor(.textBlack)
+                
+                Text("Cancel")
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundColor(.textBlack)
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 50)
+            .background(
+                RoundedRectangle(cornerRadius: 25)
+                    .fill(Color.white)
+            )
+        })
+    }
 
         private func handleAdding() {
                 var feedbackGenerator: UINotificationFeedbackGenerator? = UINotificationFeedbackGenerator()
