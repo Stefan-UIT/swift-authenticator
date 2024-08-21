@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Pow
+import Lottie
 
 struct SettingView: View {
     let tokens: [Token]
@@ -19,7 +20,8 @@ struct SettingView: View {
     @State private var isPresentedView = false
     @State private var buttonScale = 1.0
     @State private var isShineEffect = false
-    @State private var isToggleEnable = false
+    @State private var isFaceIDToggleEnable = false
+    @State private var isiCloudToggleEnable = false
     
     private var tokensText: String {
         return tokens.map(\.uri).joined(separator: "\n") + "\n"
@@ -63,6 +65,8 @@ struct SettingView: View {
 //                    }
 //                    
 //                }
+                faceIDToggleView
+                icloudToggleView
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(sections) { section in
                         Section(header:
@@ -95,33 +99,13 @@ struct SettingView: View {
                     }
                 }
                 .padding()
-                Section(header:
-                            Text("Security")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundStyle(.textBlack)
-                    .font(.system(size: 16, weight: .bold))
-                ) {
-                    Toggle(BiometricAuthenticationService.shared.securityTitle, isOn: $isToggleEnable)
-                        .padding(.bottom)
-                }
-                .padding()
             }
         }
         .onAppear {
             Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { _ in
                 isShineEffect.toggle()
             }
-            isToggleEnable = BiometricAuthenticationService.shared.isAppLocked
-        }
-        .onChange(of: isToggleEnable) { newValue in
-            if BiometricAuthenticationService.shared.isAppLocked != newValue {
-                BiometricAuthenticationService.shared.authenticateWithBiometrics { isSuccess, errorString in
-                    if isSuccess {
-                        isToggleEnable = newValue
-                        BiometricAuthenticationService.shared.setAppLocked(isEnable: newValue)
-                    }
-                }
-            }
+            isFaceIDToggleEnable = BiometricAuthenticationService.shared.isAppLocked
         }
         .toolbar(.hidden)
         .background(Color.lightGrayBackground)
@@ -154,7 +138,54 @@ struct SettingView: View {
             }
         }
     }
+}
+
+// Views
+private extension SettingView {
+    var faceIDToggleView: some View {
+        Toggle(isOn: $isFaceIDToggleEnable) {
+            HStack {
+                Text(BiometricAuthenticationService.shared.securityTitle)
+                    .font(.system(size: 16, weight: .medium))
+                LottieView(animation: .named("face-id"))
+                  .looping()
+                  .frame(width: 32, height: 32)
+            }
+        }
+        .padding(.horizontal)
+        .padding(.top)
+        .onChange(of: isFaceIDToggleEnable) { newValue in
+            if BiometricAuthenticationService.shared.isAppLocked != newValue {
+                BiometricAuthenticationService.shared.authenticateWithBiometrics { isSuccess, errorString in
+                    if isSuccess {
+                        isFaceIDToggleEnable = newValue
+                        BiometricAuthenticationService.shared.setAppLocked(isEnable: newValue)
+                    }
+                }
+            }
+        }
+    }
     
+    var icloudToggleView: some View {
+        Toggle(isOn: $isiCloudToggleEnable) {
+            HStack(spacing: 0) {
+                Text("Sync with iCloud")
+                    .font(.system(size: 16, weight: .medium))
+                LottieView(animation: .named("icloud"))
+                  .looping()
+                  .frame(width: 48, height: 48)
+            }
+            
+        }
+        .tint(.mainBlue)
+        .padding(.horizontal)
+        .padding(.top, 8)
+    }
+}
+
+
+// Actions
+private extension SettingView {
     func handlingShareApp(urlString: String) {
         guard let url = URL(string: urlString) else {
             print("Invalid URL: \(urlString)")
@@ -179,41 +210,9 @@ struct SettingView: View {
                                 style: .iOS16AppleMusic)
         }
     }
-    
-//    var premiumBanner: some View {
-//        HStack {
-//            VStack(alignment: .leading, spacing: 4) {
-//                Text("Upgrade to Premium")
-//                    .font(.system(size: 18, weight: .bold))
-//                    .foregroundColor(.white)
-//                Text("Unlock 20+ Premium privileges")
-//                    .font(.system(size: 14, weight: .regular))
-//                    .foregroundColor(.white)
-//            }
-//            Spacer()
-//            Text("Upgrade")
-//                .font(.system(size: 14, weight: .bold))
-//                .foregroundColor(.black)
-//                .padding(.horizontal, 16)
-//                .padding(.vertical, 8)
-//                .background(.white)
-//                .clipShape(Capsule())
-//        }
-//        .frame(maxWidth: .infinity)
-//        .padding()
-//        .background(
-//            Color(uiColor: .mainYellow)
-//                .cornerRadius(12)
-//        )
-//        .padding(.top, 12)
-//    }
 }
 
-struct SettingSection: Identifiable {
-    var id = UUID()
-    var title: String
-    var items: [SettingType]
-}
+
 
 // Export
 private extension SettingView {

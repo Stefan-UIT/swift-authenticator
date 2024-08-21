@@ -30,6 +30,10 @@
 		2EAE4C782C747D2F0053B71D /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 2EAE4C772C747D2F0053B71D /* Shimmer */; };
 		2EAE4C7E2C7597660053B71D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2EAE4C7D2C7597660053B71D /* FirebaseAnalytics */; };
 		2EAE4C802C7597660053B71D /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 2EAE4C7F2C7597660053B71D /* FirebaseRemoteConfig */; };
+		2EAE4C832C75CCCC0053B71D /* face-id.json in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE4C822C75CCCC0053B71D /* face-id.json */; };
+		2EAE4C852C75CEA60053B71D /* icloud.json in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE4C842C75CEA60053B71D /* icloud.json */; };
+		2EAE4C872C75CECD0053B71D /* SettingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE4C862C75CECD0053B71D /* SettingSection.swift */; };
+		2EAE4C8A2C75D53A0053B71D /* face-id-authen.json in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE4C892C75D53A0053B71D /* face-id-authen.json */; };
 		2EE5657F2C6C533500A3B69B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE5657E2C6C533500A3B69B /* AppDelegate.swift */; };
 		2EE565812C6C533500A3B69B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565802C6C533500A3B69B /* SceneDelegate.swift */; };
 		2EE565832C6C533500A3B69B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565822C6C533500A3B69B /* ViewController.swift */; };
@@ -88,6 +92,10 @@
 		2EAE4C692C7342940053B71D /* LinearGradient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LinearGradient+Extensions.swift"; sourceTree = "<group>"; };
 		2EAE4C6D2C743BC40053B71D /* PremiumLottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumLottieView.swift; sourceTree = "<group>"; };
 		2EAE4C7A2C7594790053B71D /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
+		2EAE4C822C75CCCC0053B71D /* face-id.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "face-id.json"; sourceTree = "<group>"; };
+		2EAE4C842C75CEA60053B71D /* icloud.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = icloud.json; sourceTree = "<group>"; };
+		2EAE4C862C75CECD0053B71D /* SettingSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSection.swift; sourceTree = "<group>"; };
+		2EAE4C892C75D53A0053B71D /* face-id-authen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "face-id-authen.json"; sourceTree = "<group>"; };
 		2EE5657B2C6C533500A3B69B /* Authenticator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Authenticator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EE5657E2C6C533500A3B69B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EE565802C6C533500A3B69B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -188,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				2EAE4C582C73300E0053B71D /* SettingType.swift */,
+				2EAE4C862C75CECD0053B71D /* SettingSection.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -204,6 +213,7 @@
 		2EAE4C5D2C73300E0053B71D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				2EAE4C812C75CCA20053B71D /* Lottie */,
 				2EAE4C592C73300E0053B71D /* Model */,
 				2EAE4C5B2C73300E0053B71D /* Views */,
 				2EAE4C5C2C73300E0053B71D /* SettingView.swift */,
@@ -233,6 +243,23 @@
 				2EAE4C7A2C7594790053B71D /* RemoteConfigManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		2EAE4C812C75CCA20053B71D /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				2EAE4C842C75CEA60053B71D /* icloud.json */,
+				2EAE4C822C75CCCC0053B71D /* face-id.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
+		2EAE4C882C75D51A0053B71D /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				2EAE4C892C75D53A0053B71D /* face-id-authen.json */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 		2EE565722C6C533500A3B69B = {
@@ -267,7 +294,6 @@
 				2EE565872C6C533700A3B69B /* Assets.xcassets */,
 				2EE565892C6C533700A3B69B /* LaunchScreen.storyboard */,
 				2EE5658C2C6C533700A3B69B /* Info.plist */,
-				2E233CA32C6CEE5900BD5F77 /* Authenticator.xcdatamodeld */,
 			);
 			path = Authenticator;
 			sourceTree = "<group>";
@@ -402,6 +428,7 @@
 		BAA1F8E82C74DB75000C53CB /* BiometricAuthentication */ = {
 			isa = PBXGroup;
 			children = (
+				2EAE4C882C75D51A0053B71D /* Lottie */,
 				BAA1F8E62C74DB3B000C53CB /* BiometricAuthenticationService.swift */,
 				BAA1F8E92C74DBAD000C53CB /* AppAuthenticationView.swift */,
 			);
@@ -492,6 +519,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EAE4C682C7334910053B71D /* king-icon-lottie.json in Resources */,
+				2EAE4C852C75CEA60053B71D /* icloud.json in Resources */,
+				2EAE4C8A2C75D53A0053B71D /* face-id-authen.json in Resources */,
+				2EAE4C832C75CCCC0053B71D /* face-id.json in Resources */,
 				2EE565882C6C533700A3B69B /* Assets.xcassets in Resources */,
 				2EE5658B2C6C533700A3B69B /* Base in Resources */,
 			);
@@ -506,6 +536,7 @@
 			files = (
 				2EE565DE2C6C8B0500A3B69B /* OnboardingView.swift in Sources */,
 				BAA1F8EA2C74DBAD000C53CB /* AppAuthenticationView.swift in Sources */,
+				2EAE4C872C75CECD0053B71D /* SettingSection.swift in Sources */,
 				2EE565D02C6C57C600A3B69B /* StringExtensions.swift in Sources */,
 				2EE565CF2C6C57C600A3B69B /* DateExtensions.swift in Sources */,
 				2EAE4C602C73300E0053B71D /* SettingView.swift in Sources */,
@@ -694,10 +725,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8979BGY7V4;
+				DEVELOPMENT_TEAM = AZ7KZLSX9B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Authenticator/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Access Camera to scan QR Code";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Used to authenticate login credentials";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -708,7 +740,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.authen.Authenticator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.diag.diagpro.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -727,10 +759,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8979BGY7V4;
+				DEVELOPMENT_TEAM = AZ7KZLSX9B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Authenticator/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Access Camera to scan QR Code";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Used to authenticate login credentials";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -741,7 +774,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.authen.Authenticator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.diag.diagpro.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -923,7 +956,7 @@
 			children = (
 				BAA1F8E32C74DA92000C53CB /* Authenticator.xcdatamodel */,
 			);
-			currentVersion = 2E233CA42C6CEE5900BD5F77 /* Authenticator.xcdatamodel */;
+			currentVersion = BAA1F8E32C74DA92000C53CB /* Authenticator.xcdatamodel */;
 			path = Authenticator.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

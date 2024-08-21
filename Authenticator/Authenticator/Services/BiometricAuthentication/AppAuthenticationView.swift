@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Lottie
 
 struct AppAuthenticationView: View {
     @Binding var showLockScreen: Bool
@@ -13,28 +14,55 @@ struct AppAuthenticationView: View {
     
     var body: some View {
         VStack {
-            Image("app-security")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 300, height: 250)
-                .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-                .padding(.top, 100)
+            Text("Face ID")
+                .font(.system(size: 32, weight: .bold))
+                .foregroundColor(.textBlack)
+            Spacer()
+            LottieView(animation: .named("face-id-authen"))
+              .looping()
+              .frame(width: 180, height: 180)
+            Spacer()
+            VStack(spacing: 4) {
+                // title and description
+                Text("Unlock with Face ID")
+                    .font(.system(size: 24, weight: .semibold))
+                    .foregroundColor(.textBlack)
+                Text("Face ID is required to unlock Authenticator")
+                    .font(.system(size: 18, weight: .regular))
+                    .foregroundColor(.textGray)
+                    .multilineTextAlignment(.center)
+                    .padding(.top, 4)
+            }
+            
+            Spacer()
             if !showRetry {
                 Button(action: {
                     BiometricAuthenticationService.shared.authenticateWithBiometrics(completion: { isSucces, errorMessage in
                         showLockScreen = !isSucces
                     })
                 }, label: {
-                    Image("retry")
-                        .resizable()
-                        .frame(width: 60, height: 60)
-                        .padding(.top, 40)
+                    HStack {
+                        // white-face-id-icon
+                        Image("white-face-id-icon")
+                            .resizable()
+                            .frame(width: 28, height: 28)
+                        Text("Unlock now")
+                            .font(.system(size: 18, weight: .semibold))
+                            .foregroundColor(.white)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 50)
+                    .background(
+                        RoundedRectangle(cornerRadius: 25)
+                            .fill(Color.mainBlue)
+                            .padding(.horizontal)
+                    )
                 })
             }
-            Spacer()
             
         }
         .background(Color.clear)
+        .padding(.vertical, 40.minScaled)
         .onAppear {
             BiometricAuthenticationService.shared.authenticateWithBiometrics(completion: { isSucces, errorMessage in
                 showLockScreen = !isSucces

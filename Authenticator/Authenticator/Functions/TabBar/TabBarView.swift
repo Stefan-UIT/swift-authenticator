@@ -34,7 +34,6 @@ struct TabBarView: View {
             }
             .fullScreenCover(isPresented: $showLockScreen) {
                 AppAuthenticationView(showLockScreen: $showLockScreen)
-                    .edgesIgnoringSafeArea(.all)
             }
     }
 }
