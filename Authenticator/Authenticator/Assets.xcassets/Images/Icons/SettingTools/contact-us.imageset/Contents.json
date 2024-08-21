@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "contact-us.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

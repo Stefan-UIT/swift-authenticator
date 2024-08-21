@@ -208,35 +208,35 @@ struct HomeView: View {
                 ForEach(0..<fetchedTokens.count, id: \.self) { index in
                         let item = fetchedTokens[index]
                                 CodeCardView(token: token(of: item), totp: $codes[index], timeRemaining: $timeRemaining)
-                                        .contextMenu {
-                                                Button(action: {
-                                                        UIPasteboard.general.string = codes[index]
-                                                }) {
-                                                        Label("Copy Code", systemImage: "doc.on.doc")
-                                                }
-                                                Button(action: {
-                                                        tokenIndex = index
-                                                        presentingSheet = .cardDetailView
-                                                        isSheetPresented = true
-                                                }) {
-                                                        Label("View Detail", systemImage: "text.justifyleft")
-                                                }
-                                                Button(action: {
-                                                        tokenIndex = index
-                                                        presentingSheet = .cardEditing
-                                                        isSheetPresented = true
-                                                }) {
-                                                        Label("Edit Account", systemImage: "square.and.pencil")
-                                                }
-                                                Button(role: .destructive) {
-                                                        tokenIndex = index
-                                                        selectedTokens.removeAll()
-                                                        indexSetOnDelete.removeAll()
-                                                        isDeletionAlertPresented = true
-                                                } label: {
-                                                        Label("Delete", systemImage: "trash")
-                                                }
-                                        }
+//                                        .contextMenu {
+//                                                Button(action: {
+//                                                        UIPasteboard.general.string = codes[index]
+//                                                }) {
+//                                                        Label("Copy Code", systemImage: "doc.on.doc")
+//                                                }
+//                                                Button(action: {
+//                                                        tokenIndex = index
+//                                                        presentingSheet = .cardDetailView
+//                                                        isSheetPresented = true
+//                                                }) {
+//                                                        Label("View Detail", systemImage: "text.justifyleft")
+//                                                }
+//                                                Button(action: {
+//                                                        tokenIndex = index
+//                                                        presentingSheet = .cardEditing
+//                                                        isSheetPresented = true
+//                                                }) {
+//                                                        Label("Edit Account", systemImage: "square.and.pencil")
+//                                                }
+//                                                Button(role: .destructive) {
+//                                                        tokenIndex = index
+//                                                        selectedTokens.removeAll()
+//                                                        indexSetOnDelete.removeAll()
+//                                                        isDeletionAlertPresented = true
+//                                                } label: {
+//                                                        Label("Delete", systemImage: "trash")
+//                                                }
+//                                        }
                 }
 //                                .onMove(perform: move(from:to:))
                 .onDelete(perform: deleteItems)

@@ -29,6 +29,8 @@
 		2EAE4C6A2C7342940053B71D /* LinearGradient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE4C692C7342940053B71D /* LinearGradient+Extensions.swift */; };
 		2EAE4C6E2C743BC40053B71D /* PremiumLottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE4C6D2C743BC40053B71D /* PremiumLottieView.swift */; };
 		2EAE4C782C747D2F0053B71D /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 2EAE4C772C747D2F0053B71D /* Shimmer */; };
+		2EAE4C7E2C7597660053B71D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2EAE4C7D2C7597660053B71D /* FirebaseAnalytics */; };
+		2EAE4C802C7597660053B71D /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 2EAE4C7F2C7597660053B71D /* FirebaseRemoteConfig */; };
 		2EE5657F2C6C533500A3B69B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE5657E2C6C533500A3B69B /* AppDelegate.swift */; };
 		2EE565812C6C533500A3B69B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565802C6C533500A3B69B /* SceneDelegate.swift */; };
 		2EE565832C6C533500A3B69B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565822C6C533500A3B69B /* ViewController.swift */; };
@@ -84,6 +86,7 @@
 		2EAE4C672C7334910053B71D /* king-icon-lottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "king-icon-lottie.json"; sourceTree = "<group>"; };
 		2EAE4C692C7342940053B71D /* LinearGradient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LinearGradient+Extensions.swift"; sourceTree = "<group>"; };
 		2EAE4C6D2C743BC40053B71D /* PremiumLottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumLottieView.swift; sourceTree = "<group>"; };
+		2EAE4C7A2C7594790053B71D /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
 		2EE5657B2C6C533500A3B69B /* Authenticator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Authenticator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EE5657E2C6C533500A3B69B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EE565802C6C533500A3B69B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EAE4C802C7597660053B71D /* FirebaseRemoteConfig in Frameworks */,
 				2E233CB02C6DA65400BD5F77 /* FloatingButton in Frameworks */,
 				2E233CA02C6CA3D700BD5F77 /* Pow in Frameworks */,
 				2E35B6B32C6F3C2D00F3F5C0 /* AlertKit in Frameworks */,
@@ -132,6 +136,7 @@
 				2EE565E22C6C8B2100A3B69B /* UIOnboarding in Frameworks */,
 				2EE565A42C6C564000A3B69B /* TabBarModule in Frameworks */,
 				2EE565A12C6C562900A3B69B /* SwiftOTP in Frameworks */,
+				2EAE4C7E2C7597660053B71D /* FirebaseAnalytics in Frameworks */,
 				2EAE4C652C7334370053B71D /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,6 +222,14 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
+		2EAE4C792C7594610053B71D /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				2EAE4C7A2C7594790053B71D /* RemoteConfigManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		2EE565722C6C533500A3B69B = {
 			isa = PBXGroup;
 			children = (
@@ -236,8 +249,8 @@
 		2EE5657D2C6C533500A3B69B /* Authenticator */ = {
 			isa = PBXGroup;
 			children = (
+				2EAE4C792C7594610053B71D /* Managers */,
 				2EAE4C6F2C747C5C0053B71D /* Modifiers */,
-				2E233CA32C6CEE5900BD5F77 /* Authenticator.xcdatamodeld */,
 				2E35B6B42C6F3C9900F3F5C0 /* Helpers */,
 				2EE565992C6C548B00A3B69B /* Coordinators */,
 				2EE565932C6C548B00A3B69B /* Extensions */,
@@ -248,6 +261,7 @@
 				2EE565872C6C533700A3B69B /* Assets.xcassets */,
 				2EE565892C6C533700A3B69B /* LaunchScreen.storyboard */,
 				2EE5658C2C6C533700A3B69B /* Info.plist */,
+				2E233CA32C6CEE5900BD5F77 /* Authenticator.xcdatamodeld */,
 			);
 			path = Authenticator;
 			sourceTree = "<group>";
@@ -397,6 +411,8 @@
 				2E35B6B22C6F3C2D00F3F5C0 /* AlertKit */,
 				2EAE4C642C7334370053B71D /* Lottie */,
 				2EAE4C772C747D2F0053B71D /* Shimmer */,
+				2EAE4C7D2C7597660053B71D /* FirebaseAnalytics */,
+				2EAE4C7F2C7597660053B71D /* FirebaseRemoteConfig */,
 			);
 			productName = Authenticator;
 			productReference = 2EE5657B2C6C533500A3B69B /* Authenticator.app */;
@@ -436,6 +452,7 @@
 				2E35B6B12C6F3C2D00F3F5C0 /* XCRemoteSwiftPackageReference "AlertKit" */,
 				2EAE4C632C7334370053B71D /* XCRemoteSwiftPackageReference "lottie-spm" */,
 				2EAE4C762C747D2F0053B71D /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
+				2EAE4C7C2C7597660053B71D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 2EE5657C2C6C533500A3B69B /* Products */;
 			projectDirPath = "";
@@ -775,6 +792,14 @@
 				minimumVersion = 1.5.1;
 			};
 		};
+		2EAE4C7C2C7597660053B71D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.1.0;
+			};
+		};
 		2EE5659F2C6C562900A3B69B /* XCRemoteSwiftPackageReference "SwiftOTP" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lachlanbell/SwiftOTP";
@@ -835,6 +860,16 @@
 			package = 2EAE4C762C747D2F0053B71D /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
 			productName = Shimmer;
 		};
+		2EAE4C7D2C7597660053B71D /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2EAE4C7C2C7597660053B71D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		2EAE4C7F2C7597660053B71D /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2EAE4C7C2C7597660053B71D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
 		2EE565A02C6C562900A3B69B /* SwiftOTP */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2EE5659F2C6C562900A3B69B /* XCRemoteSwiftPackageReference "SwiftOTP" */;
@@ -864,8 +899,7 @@
 				2E233CA42C6CEE5900BD5F77 /* Authenticator.xcdatamodel */,
 			);
 			currentVersion = 2E233CA42C6CEE5900BD5F77 /* Authenticator.xcdatamodel */;
-			name = Authenticator.xcdatamodeld;
-			path = "/Users/trungvo/swift-authenticator/Authenticator/Authenticator/Authenticator.xcdatamodeld";
+			path = Authenticator.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

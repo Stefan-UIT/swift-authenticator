@@ -76,9 +76,11 @@ struct SettingView: View {
                                 } label: {
                                     VStack {
                                         item.image
-                                            .renderingMode(.template)
-                                            .font(.system(size: 22))
-                                            .foregroundColor(.textBlack)
+                                            .resizable()
+                                            .frame(width: 32, height: 32)
+//                                            .renderingMode(.template)
+//                                            .font(.system(size: 22))
+//                                            .foregroundColor(.textBlack)
                                             .padding(.bottom, 8)
                                         Text(item.title)
                                             .font(.system(size: 16, weight: .regular))

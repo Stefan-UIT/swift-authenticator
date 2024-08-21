@@ -24,7 +24,7 @@ enum SettingType {
     var title: String {
         switch self {
             case .copyToClipboard:
-                return "Copy to Clipboard"
+                return "Copy URIs"
             case .exportPlainText:
                 return "as Plain Text"
             case .exportTxtFile:
@@ -45,26 +45,35 @@ enum SettingType {
     private var imageName: String {
         switch self {
             case .copyToClipboard:
-                return "doc.on.doc"
+                return "copy"
             case .exportPlainText:
-                return "text.alignleft"
+                return "raw-text"
             case .exportTxtFile:
-                return "doc.text"
+                return "txt-file"
             case .exportZipFile:
-                return "doc.zipper"
+                return "zip"
         case .shareApp:
-            return "square.and.arrow.up"
+            return "share"
         case .contactUs:
-            return "envelope"
+            return "contact-us"
         case .privacyPolicy:
-            return "shield.lefthalf.fill"
+            return "privacy-policy"
         case .termOfUse:
-            return "book"
+            return "term-of-use"
         }
     }
     
     var image: Image {
-        Image(systemName: imageName)
+        return Image(imageName)
+    }
+    
+    var imageSize: CGSize {
+        switch self {
+        case .exportPlainText, .exportTxtFile:
+            return CGSize(width: 32, height: 32)
+        default:
+            return CGSize(width: 32, height: 32)
+        }
     }
     
     var url: String? {
