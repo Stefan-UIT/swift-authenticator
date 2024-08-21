@@ -12,6 +12,7 @@ struct TabBarView: View {
         @StateObject private var tabBarSetting = TabBarSettings()
     //    @AppStorage("showOnboarding") var showOnboarding: Bool = true
         @State var showOnboarding: Bool = false
+    @State var showLockScreen: Bool = false
     
     var body: some View {
             TabBar(selection: $tabBarSetting.selectedItem, visibility: $tabBarSetting.visibility) {
@@ -26,6 +27,15 @@ struct TabBarView: View {
                 OnboardingView()
                     .edgesIgnoringSafeArea(.all)
             })
+            .onAppear {
+                if BiometricAuthenticationService.shared.isAppLocked {
+                    showLockScreen = true
+                }
+            }
+            .fullScreenCover(isPresented: $showLockScreen) {
+                AppAuthenticationView(showLockScreen: $showLockScreen)
+                    .edgesIgnoringSafeArea(.all)
+            }
     }
 }
 

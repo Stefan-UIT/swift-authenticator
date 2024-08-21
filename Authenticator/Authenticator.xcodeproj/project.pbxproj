@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2E233CA02C6CA3D700BD5F77 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 2E233C9F2C6CA3D700BD5F77 /* Pow */; };
 		2E233CA22C6CAA4F00BD5F77 /* Number+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E233CA12C6CAA4F00BD5F77 /* Number+Scale.swift */; };
-		2E233CA52C6CEE5900BD5F77 /* Authenticator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2E233CA32C6CEE5900BD5F77 /* Authenticator.xcdatamodeld */; };
 		2E233CAB2C6DA5C000BD5F77 /* HomeFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E233CA82C6DA5C000BD5F77 /* HomeFloatingButton.swift */; };
 		2E233CAC2C6DA5C000BD5F77 /* FloatingMainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E233CA92C6DA5C000BD5F77 /* FloatingMainButton.swift */; };
 		2E233CAD2C6DA5C000BD5F77 /* IconAndTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E233CAA2C6DA5C000BD5F77 /* IconAndTextButton.swift */; };
@@ -66,11 +65,13 @@
 		2EE565DE2C6C8B0500A3B69B /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565DB2C6C8B0500A3B69B /* OnboardingView.swift */; };
 		2EE565DF2C6C8B0500A3B69B /* UIOnboardingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE565DC2C6C8B0500A3B69B /* UIOnboardingHelper.swift */; };
 		2EE565E22C6C8B2100A3B69B /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 2EE565E12C6C8B2100A3B69B /* UIOnboarding */; };
+		BAA1F8E42C74DA92000C53CB /* Authenticator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAA1F8E22C74DA92000C53CB /* Authenticator.xcdatamodeld */; };
+		BAA1F8E72C74DB3B000C53CB /* BiometricAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA1F8E62C74DB3B000C53CB /* BiometricAuthenticationService.swift */; };
+		BAA1F8EA2C74DBAD000C53CB /* AppAuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA1F8E92C74DBAD000C53CB /* AppAuthenticationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2E233CA12C6CAA4F00BD5F77 /* Number+Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+Scale.swift"; sourceTree = "<group>"; };
-		2E233CA42C6CEE5900BD5F77 /* Authenticator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Authenticator.xcdatamodel; sourceTree = "<group>"; };
 		2E233CA82C6DA5C000BD5F77 /* HomeFloatingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeFloatingButton.swift; sourceTree = "<group>"; };
 		2E233CA92C6DA5C000BD5F77 /* FloatingMainButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingMainButton.swift; sourceTree = "<group>"; };
 		2E233CAA2C6DA5C000BD5F77 /* IconAndTextButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconAndTextButton.swift; sourceTree = "<group>"; };
@@ -120,6 +121,9 @@
 		2EE565D62C6C584200A3B69B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		2EE565DB2C6C8B0500A3B69B /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		2EE565DC2C6C8B0500A3B69B /* UIOnboardingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOnboardingHelper.swift; sourceTree = "<group>"; };
+		BAA1F8E32C74DA92000C53CB /* Authenticator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Authenticator.xcdatamodel; sourceTree = "<group>"; };
+		BAA1F8E62C74DB3B000C53CB /* BiometricAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationService.swift; sourceTree = "<group>"; };
+		BAA1F8E92C74DBAD000C53CB /* AppAuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAuthenticationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +222,7 @@
 		2EAE4C6F2C747C5C0053B71D /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				BAA1F8E22C74DA92000C53CB /* Authenticator.xcdatamodeld */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -249,6 +254,7 @@
 		2EE5657D2C6C533500A3B69B /* Authenticator */ = {
 			isa = PBXGroup;
 			children = (
+				BAA1F8E52C74DB2C000C53CB /* Services */,
 				2EAE4C792C7594610053B71D /* Managers */,
 				2EAE4C6F2C747C5C0053B71D /* Modifiers */,
 				2E35B6B42C6F3C9900F3F5C0 /* Helpers */,
@@ -385,6 +391,23 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		BAA1F8E52C74DB2C000C53CB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BAA1F8E82C74DB75000C53CB /* BiometricAuthentication */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		BAA1F8E82C74DB75000C53CB /* BiometricAuthentication */ = {
+			isa = PBXGroup;
+			children = (
+				BAA1F8E62C74DB3B000C53CB /* BiometricAuthenticationService.swift */,
+				BAA1F8E92C74DBAD000C53CB /* AppAuthenticationView.swift */,
+			);
+			path = BiometricAuthentication;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -482,6 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EE565DE2C6C8B0500A3B69B /* OnboardingView.swift in Sources */,
+				BAA1F8EA2C74DBAD000C53CB /* AppAuthenticationView.swift in Sources */,
 				2EE565D02C6C57C600A3B69B /* StringExtensions.swift in Sources */,
 				2EE565CF2C6C57C600A3B69B /* DateExtensions.swift in Sources */,
 				2EAE4C602C73300E0053B71D /* SettingView.swift in Sources */,
@@ -500,6 +524,7 @@
 				2E35B6BB2C71D31F00F3F5C0 /* HomeEmptyImage.swift in Sources */,
 				2E233CAB2C6DA5C000BD5F77 /* HomeFloatingButton.swift in Sources */,
 				2EE5659C2C6C548B00A3B69B /* AppCoordinator.swift in Sources */,
+				BAA1F8E42C74DA92000C53CB /* Authenticator.xcdatamodeld in Sources */,
 				2E233CAC2C6DA5C000BD5F77 /* FloatingMainButton.swift in Sources */,
 				2EE565DF2C6C8B0500A3B69B /* UIOnboardingHelper.swift in Sources */,
 				2EE565832C6C533500A3B69B /* ViewController.swift in Sources */,
@@ -523,8 +548,8 @@
 				2EAE4C5F2C73300E0053B71D /* WebView.swift in Sources */,
 				2EE5657F2C6C533500A3B69B /* AppDelegate.swift in Sources */,
 				2EE565C92C6C57C600A3B69B /* ManualEntryView.swift in Sources */,
-				2E233CA52C6CEE5900BD5F77 /* Authenticator.xcdatamodeld in Sources */,
 				2EE565C62C6C57C600A3B69B /* ActivityView.swift in Sources */,
+				BAA1F8E72C74DB3B000C53CB /* BiometricAuthenticationService.swift in Sources */,
 				2EE565812C6C533500A3B69B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -893,10 +918,10 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		2E233CA32C6CEE5900BD5F77 /* Authenticator.xcdatamodeld */ = {
+		BAA1F8E22C74DA92000C53CB /* Authenticator.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				2E233CA42C6CEE5900BD5F77 /* Authenticator.xcdatamodel */,
+				BAA1F8E32C74DA92000C53CB /* Authenticator.xcdatamodel */,
 			);
 			currentVersion = 2E233CA42C6CEE5900BD5F77 /* Authenticator.xcdatamodel */;
 			path = Authenticator.xcdatamodeld;

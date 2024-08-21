@@ -19,6 +19,7 @@ struct SettingView: View {
     @State private var isPresentedView = false
     @State private var buttonScale = 1.0
     @State private var isShineEffect = false
+    @State private var isToggleEnable = false
     
     private var tokensText: String {
         return tokens.map(\.uri).joined(separator: "\n") + "\n"
@@ -94,11 +95,32 @@ struct SettingView: View {
                     }
                 }
                 .padding()
+                Section(header:
+                            Text("Security")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundStyle(.textBlack)
+                    .font(.system(size: 16, weight: .bold))
+                ) {
+                    Toggle(BiometricAuthenticationService.shared.securityTitle, isOn: $isToggleEnable)
+                        .padding(.bottom)
+                }
+                .padding()
             }
         }
         .onAppear {
             Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { _ in
                 isShineEffect.toggle()
+            }
+            isToggleEnable = BiometricAuthenticationService.shared.isAppLocked
+        }
+        .onChange(of: isToggleEnable) { newValue in
+            if BiometricAuthenticationService.shared.isAppLocked != newValue {
+                BiometricAuthenticationService.shared.authenticateWithBiometrics { isSuccess, errorString in
+                    if isSuccess {
+                        isToggleEnable = newValue
+                        BiometricAuthenticationService.shared.setAppLocked(isEnable: newValue)
+                    }
+                }
             }
         }
         .toolbar(.hidden)

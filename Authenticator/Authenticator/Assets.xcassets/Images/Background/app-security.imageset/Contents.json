@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "protected-celular.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
